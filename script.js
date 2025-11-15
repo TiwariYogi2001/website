@@ -1,59 +1,136 @@
 // Skeleton Hand Cursor with Blood Drops
 const skeletonCursor = document.querySelector('.skeleton-cursor');
 const bloodDropsContainer = document.querySelector('.blood-drops-container');
+
 let cursorX = 0;
 let cursorY = 0;
-let bloodDropInterval;
+let bloodDropInterval = null;
+let lastDropTime = 0;
 
-// Track mouse movement with proper positioning
+// mouse position tracking
 document.addEventListener('mousemove', (e) => {
     cursorX = e.clientX;
     cursorY = e.clientY;
-    
-    if (skeletonCursor) {
-        // Position cursor with slight offset to match pointer position
-        skeletonCursor.style.left = cursorX + 'px';
-        skeletonCursor.style.top = cursorY + 'px';
-    }
+
+    if (!skeletonCursor) return;
+
+    // keep the hand slightly offset so it points like a real cursor
+    skeletonCursor.style.left = (cursorX) + 'px';
+    skeletonCursor.style.top = (cursorY) + 'px';
 });
 
-// Add hover effect on clickable elements
+// when hovering clickable items, slightly enlarge / tilt the hand
 document.addEventListener('mouseover', (e) => {
-    if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || 
-        e.target.classList.contains('btn') || e.target.classList.contains('hamburger-menu')) {
-        if (skeletonCursor) {
-            skeletonCursor.style.transform = 'translate(-15px, -10px) scale(1.1)';
-        }
+    const target = e.target;
+    if (!skeletonCursor) return;
+
+    if (target.closest('a, button, .btn, .hamburger-menu')) {
+        skeletonCursor.classList.add('active');
     }
 });
 
 document.addEventListener('mouseout', (e) => {
-    if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || 
-        e.target.classList.contains('btn') || e.target.classList.contains('hamburger-menu')) {
-        if (skeletonCursor) {
-            skeletonCursor.style.transform = 'translate(-15px, -10px) scale(1)';
-        }
+    const target = e.target;
+    if (!skeletonCursor) return;
+
+    if (target.closest('a, button, .btn, .hamburger-menu') === null) {
+        skeletonCursor.classList.remove('active');
     }
 });
 
-// Create continuous blood drops from cursor
-function createBloodDrop() {
-    if (window.innerWidth <= 968) return; // Don't create on mobile
-    
+
+
+// create a single blood drop with splat effect
+function createBloodDrop(x, y) {
+    if (window.innerWidth <= 968) return; // skip on mobile
+
     const drop = document.createElement('div');
     drop.className = 'blood-drop-cursor';
-    drop.style.left = cursorX + 'px';
-    drop.style.top = cursorY + 'px';
-    
+
+    // jitter the spawn so drops don't all spawn at same pixel
+    const jitterX = (Math.random() - 0.5) * 8;
+    const jitterY = (Math.random() - 0.5) * 6;
+
+    drop.style.left = (x + jitterX) + 'px';
+    drop.style.top = (y + jitterY) + 'px';
+    drop.style.transform = `translateY(0) rotate(${(Math.random()-0.5)*20}deg)`;
+
     bloodDropsContainer.appendChild(drop);
-    
+
+    // create a tiny splat where the drop "lands" (position will be slightly below start)
+    const splat = document.createElement('div');
+    splat.className = 'blood-splat';
+
+    // set splat position a bit lower than drop start, randomized
+    const splatX = x + jitterX + (Math.random() - 0.5) * 12;
+    const splatY = y + 60 + (Math.random() * 20);
+
+    splat.style.left = splatX + 'px';
+    splat.style.top = splatY + 'px';
+    bloodDropsContainer.appendChild(splat);
+
+    // cleanup: remove elements after animation finishes (safe generous timeout)
     setTimeout(() => {
-        drop.remove();
-    }, 1500);
+        if (drop.parentElement) drop.parentElement.removeChild(drop);
+    }, 1600);
+
+    setTimeout(() => {
+        if (splat.parentElement) splat.parentElement.removeChild(splat);
+    }, 900);
 }
 
-// Start blood drops
-bloodDropInterval = setInterval(createBloodDrop, 200);
+// continuous gentle dripping while the cursor moves (interval-based)
+function startBloodDripping() {
+    if (bloodDropInterval) return;
+    bloodDropInterval = setInterval(() => {
+        // throttle drops so they aren't insane
+        const now = Date.now();
+        if (now - lastDropTime < 140) return;
+        createBloodDrop(cursorX, cursorY + 8); // spawn slightly below the fingertip
+        lastDropTime = now;
+    }, 160);
+}
+
+function stopBloodDripping() {
+    clearInterval(bloodDropInterval);
+    bloodDropInterval = null;
+}
+
+// start drip on mouseenter to document and stop when leave window
+document.addEventListener('mouseenter', startBloodDripping);
+document.addEventListener('mouseleave', stopBloodDripping);
+
+// create a smear when user mouses down (adds realism)
+document.addEventListener('mousedown', (e) => {
+    if (window.innerWidth <= 968) return;
+    const smear = document.createElement('div');
+    smear.className = 'blood-smear';
+
+    // place smear where cursor is and give a small random rotation
+    smear.style.left = (e.clientX + (Math.random()-0.5)*20) + 'px';
+    smear.style.top = (e.clientY + (Math.random()-0.5)*20) + 'px';
+    smear.style.transform = `translate(-50%, -50%) rotate(${(Math.random()-0.5)*25}deg)`;
+
+    bloodDropsContainer.appendChild(smear);
+
+    // remove after animation ends
+    setTimeout(() => {
+        if (smear.parentElement) smear.parentElement.removeChild(smear);
+    }, 2200);
+});
+
+// Optional: reduce CPU when the tab is hidden
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        stopBloodDripping();
+    } else {
+        startBloodDripping();
+    }
+});
+
+// Start dripping immediately when the page loads in desktop view
+if (window.innerWidth > 968) startBloodDripping();
+
 
 // Horror Sound Control
 const soundToggle = document.getElementById('soundToggle');
@@ -374,26 +451,73 @@ rippleStyle.textContent = `
     }
 `;
 document.head.appendChild(rippleStyle);
+// EmailJS contact form (with visible on-page success message)
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  const statusEl = document.getElementById('contactStatus');
+  const submitBtn = document.getElementById('sendButton');
 
-// Contact form submission
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // Show success message
-        alert(`Thank you for your message, ${name}! I will get back to you soon at ${email}.`);
-        
-        // Reset form
-        this.reset();
-    });
-}
+  if (!form) return;
+
+  function showStatus(message, isSuccess = true) {
+    if (!statusEl) return;
+
+    statusEl.textContent = message;
+
+    // Change color
+    if (isSuccess) {
+      statusEl.classList.remove('error');
+    } else {
+      statusEl.classList.add('error');
+    }
+
+    // Fade in
+    statusEl.style.opacity = 1;
+
+    // Auto fade out after 5 sec
+    setTimeout(() => {
+      statusEl.style.opacity = 0;
+    }, 5000);
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Validate
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Gather fields
+    const templateParams = {
+      name: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      subject: document.getElementById('subject').value.trim(),
+      message: document.getElementById('message').value.trim(),
+    };
+
+    // Button state
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    // Send Email
+    emailjs.send('service_e3z3alb', 'template_wiu8pvb', templateParams)
+      .then(() => {
+        showStatus("🎉 Your message has been sent successfully!", true);
+        form.reset();
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+      })
+      .catch(() => {
+        showStatus("❌ Failed to send message. Try again later.", false);
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+      });
+  });
+});
 
 // Add typing effect for achievement cards on view
 const achievementCards = document.querySelectorAll('.achievement-card');
@@ -410,6 +534,99 @@ function createBloodDrips() {
         drip.style.animationDuration = `${duration}s`;
     });
 }
+// Bottom Horror Pro — walker controller (randomized start & speeds)
+(function() {
+  const stage = document.getElementById('bottom-horror-pro');
+  if (!stage) return;
+
+  // select walkers
+  const walkerA = stage.querySelector('.tiny-zombie.walker.a');
+  const walkerB = stage.querySelector('.tiny-zombie.walker.b');
+
+  // configuration (ms)
+  const config = {
+    walkerA: { duration: 16000, delayRange: [0, 2500], scale: 1.0 },
+    walkerB: { duration: 11000, delayRange: [2000, 6000], scale: 0.78 }
+  };
+
+  // utility to random in range
+  const rand = (min, max) => min + Math.random() * (max - min);
+
+  function animateWalker(el, opts) {
+    // randomize seed offsets
+    const dur = opts.duration * (0.9 + Math.random()*0.25); // small variability
+    const startDelay = rand(opts.delayRange[0], opts.delayRange[1]);
+
+    // starting position (off-screen left)
+    el.style.left = `${-240 - Math.random()*120}px`;
+    el.style.opacity = (0.42 + Math.random()*0.12).toFixed(2);
+    el.style.transform = `scale(${opts.scale})`;
+
+    // set small head bob by toggling .walking class
+    el.classList.add('walking');
+
+    // schedule move using transform with translateX
+    setTimeout(() => {
+      // compute translate length to move across screen plus extra margin
+      const screenW = window.innerWidth;
+      const translateX = screenW + 520 + Math.random()*300; // variable travel
+      el.style.transition = `transform ${dur}ms linear`;
+      // preserve scale when animating: translateX(...) scale(...) pattern
+      el.style.transform = `translateX(${translateX}px) scale(${opts.scale})`;
+
+      // subtle footstep shadow squash loop
+      const footprintInterval = setInterval(() => {
+        // squash
+        const shadow = el.querySelector('.tz-shadow');
+        if (!shadow) { clearInterval(footprintInterval); return; }
+        shadow.style.transform = 'scaleY(0.78)';
+        shadow.style.opacity = '0.85';
+        setTimeout(()=> {
+          shadow.style.transform = 'scaleY(1)';
+          shadow.style.opacity = '0.62';
+        }, 140);
+      }, 380);
+
+      // cleanup after finishing travel
+      const cleanupTimeout = setTimeout(() => {
+        clearInterval(footprintInterval);
+        // reset for next cycle: jump back to left and restart with new params
+        el.style.transition = '';
+        el.style.transform = `translateX(0px) scale(${opts.scale})`;
+        // tiny pause before next cycle
+        setTimeout(()=> animateWalker(el, opts), rand(1400, 3200));
+      }, dur + 200);
+
+      // if tab hidden, cancel timers gracefully (optional)
+      document.addEventListener('visibilitychange', function onVis() {
+        if (document.hidden) {
+          // reduce animations by removing transition
+          el.style.transition = '';
+        }
+      }, { once: true });
+
+    }, startDelay);
+  }
+
+  // start both walkers
+  animateWalker(walkerA, config.walkerA);
+  animateWalker(walkerB, config.walkerB);
+
+  // subtle responsive adjustment on resize (restarts walkers to recalc width)
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // quickly restart walkers (stop by removing element and re-adding clone)
+      [walkerA, walkerB].forEach((w)=>{
+        if (!w) return;
+        // reset transition to avoid stuck state
+        w.style.transition = '';
+        w.style.transform = '';
+      });
+    }, 400);
+  });
+})();
 
 // Call on page load
 createBloodDrips();
