@@ -106,35 +106,64 @@ soundToggle.addEventListener('click', () => {
     }
 });
 
-// Mobile Menu Toggle
+// === Mobile Menu Toggle (replacement) ===
 const hamburger = document.getElementById('hamburgerMenu');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-const closeMenu = document.getElementById('closeMenu');
 const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-function openMobileMenu() {
-    hamburger.classList.add('active');
-    mobileMenu.classList.add('active');
-    mobileMenuOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
+// Toggle function (hamburger click toggles open/close)
+function toggleMobileMenu() {
+    const isActive = mobileMenu.classList.contains('active');
+    if (isActive) {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        hamburger.classList.remove('active');
+    } else {
+        mobileMenu.classList.add('active');
+        mobileMenuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        hamburger.classList.add('active');
+    }
 }
 
-function closeMobileMenu() {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('active');
-    mobileMenuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-hamburger.addEventListener('click', openMobileMenu);
-closeMenu.addEventListener('click', closeMobileMenu);
-mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-// Close mobile menu when clicking a link
-mobileNavLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
+// Open/close on hamburger click (toggle)
+hamburger.addEventListener('click', function(e) {
+    e.stopPropagation(); // prevent the document click immediately closing it
+    toggleMobileMenu();
 });
+
+// Close when clicking overlay (transparent outside area)
+mobileMenuOverlay.addEventListener('click', function() {
+    if (mobileMenu.classList.contains('active')) {
+        toggleMobileMenu();
+    }
+});
+
+// Close when clicking any nav link (keep your existing behavior)
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        if (mobileMenu.classList.contains('active')) {
+            toggleMobileMenu();
+        }
+    });
+});
+
+// Close if the user clicks anywhere outside the menu (anywhere on document)
+document.addEventListener('click', function(e) {
+    if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        if (mobileMenu.classList.contains('active')) {
+            toggleMobileMenu();
+        }
+    }
+});
+
+// Also stop clicks inside the menu from bubbling (so a click on menu content does not trigger document click)
+mobileMenu.addEventListener('click', function(e) {
+    e.stopPropagation();
+});
+
 
 // Smooth scroll functionality
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

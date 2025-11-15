@@ -339,20 +339,19 @@ nav a.active::after {
     transform: rotate(-45deg) translateY(-12px);
 }
 
-/* Mobile Menu Overlay */
+/* Mobile Menu Overlay (transparent) */
 .mobile-menu-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
+    background: transparent; /* transparent so page shows through */
     z-index: 1400;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    opacity: 1;               /* keep active control via class for pointer events */
+    pointer-events: none;     /* default: doesn't block clicks until menu opens */
+    transition: opacity 0.25s ease;
 }
 
+/* When menu active, enable overlay clicks (still transparent) */
 .mobile-menu-overlay.active {
-    opacity: 1;
     pointer-events: all;
 }
 
@@ -360,38 +359,28 @@ nav a.active::after {
 .mobile-menu {
     position: fixed;
     top: 0;
-    right: -280px;
+    right: -260px; /* off-screen by default */
     width: 250px;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(15px);
+    background: transparent; /* fully transparent panel */
+    backdrop-filter: none;    /* remove blur so underlying content shows */
     z-index: 1500;
-    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    border-left: 2px solid rgba(139, 0, 0, 0.5);
-    box-shadow: -10px 0 30px rgba(139, 0, 0, 0.4);
+    transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    border-left: 2px solid rgba(139, 0, 0, 0.3); /* subtle divider only */
+    box-shadow: none; /* no large black shadow */
+    padding: 0;
 }
 
+/* Slide in */
 .mobile-menu.active {
     right: 0;
 }
 
+/* Hide the X close button UI entirely */
 .close-menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: transparent;
-    border: 2px solid #8b0000;
-    color: #ff4500;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    transition: all 0.3s;
+    display: none !important;
 }
+
 
 .close-menu:hover {
     background: rgba(139, 0, 0, 0.3);
@@ -1588,21 +1577,20 @@ nav a.active::after {
 .hamburger-menu.active span:nth-child(3) {
     transform: rotate(-45deg) translateY(-12px);
 }
-
-/* Mobile Menu Overlay */
+/* 
+/* Mobile Menu Overlay (transparent) */
 .mobile-menu-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
+    background: transparent; /* transparent so page shows through */
     z-index: 1400;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    opacity: 1;               /* keep active control via class for pointer events */
+    pointer-events: none;     /* default: doesn't block clicks until menu opens */
+    transition: opacity 0.25s ease;
 }
 
+/* When menu active, enable overlay clicks (still transparent) */
 .mobile-menu-overlay.active {
-    opacity: 1;
     pointer-events: all;
 }
 
@@ -1610,38 +1598,28 @@ nav a.active::after {
 .mobile-menu {
     position: fixed;
     top: 0;
-    right: -280px;
+    right: -260px; /* off-screen by default */
     width: 250px;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(15px);
+    background: transparent; /* fully transparent panel */
+    backdrop-filter: none;    /* remove blur so underlying content shows */
     z-index: 1500;
-    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    border-left: 2px solid rgba(139, 0, 0, 0.5);
-    box-shadow: -10px 0 30px rgba(139, 0, 0, 0.4);
+    transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    border-left: 2px solid rgba(139, 0, 0, 0.3); /* subtle divider only */
+    box-shadow: none; /* no large black shadow */
+    padding: 0;
 }
 
+/* Slide in */
 .mobile-menu.active {
     right: 0;
 }
 
+/* Hide the X close button UI entirely */
 .close-menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: transparent;
-    border: 2px solid #8b0000;
-    color: #ff4500;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    transition: all 0.3s;
+    display: none !important;
 }
+
 
 .close-menu:hover {
     background: rgba(139, 0, 0, 0.3);
