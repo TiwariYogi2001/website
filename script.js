@@ -291,6 +291,64 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+// Certificates: modal on desktop, thumbnail open on mobile
+(function(){
+  const modal = document.getElementById('certificate-modal');
+  const modalOverlay = modal && modal.querySelector('.cert-modal-overlay');
+  const modalImg = modal && modal.querySelector('.cert-modal-img');
+  const closeBtn = modal && modal.querySelector('.cert-modal-close');
+
+  function openModal(src, alt) {
+    if (!modal) return;
+    modalImg.src = src;
+    modalImg.alt = alt || 'Certificate';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(()=> { modalImg.src = ''; }, 250);
+  }
+
+  // View button: desktop only (opens modal)
+  document.querySelectorAll('.view-cert').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      if (window.innerWidth < 768) return; // ignore on mobile
+      const card = btn.closest('.cert-card');
+      const thumb = card && card.querySelector('.cert-thumb');
+      const large = thumb && thumb.getAttribute('data-large');
+      const alt = card && card.querySelector('.cert-name')?.textContent;
+      if (large) openModal(large, alt);
+    });
+  });
+
+  // Thumbnail click behavior:
+  document.querySelectorAll('.cert-thumb').forEach(t => {
+    t.addEventListener('click', function(e) {
+      const large = t.getAttribute('data-large');
+      if (!large) return;
+      if (window.innerWidth < 768) {
+        window.open(large, '_blank', 'noopener');
+      } else {
+        openModal(large, t.getAttribute('aria-label') || 'Certificate');
+      }
+    });
+  });
+
+  if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+  });
+
+  window.addEventListener('resize', () => {
+    if (modal && modal.classList.contains('open') && window.innerWidth < 768) closeModal();
+  });
+})();
 
 // Mouse parallax effect for background blobs
 let mouseX = 0;
