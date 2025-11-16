@@ -577,6 +577,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+async function getQuote() {
+    try {
+        let res = await fetch("https://api.quotable.io/random");
+        let data = await res.json();
+        document.getElementById("ai-quote").innerHTML = `“${data.content}”`;
+    } catch (error) {
+        document.getElementById("ai-quote").innerHTML = 
+        `“Strength rises in silence—keep moving.”`;
+    }
+}
+
+window.onload = getQuote;
+
 // Add typing effect for achievement cards on view
 const achievementCards = document.querySelectorAll('.achievement-card');
 achievementCards.forEach((card, index) => {
