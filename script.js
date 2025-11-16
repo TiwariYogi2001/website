@@ -53,7 +53,7 @@ function createBloodDrop(x, y) {
 
     drop.style.left = (x + jitterX) + 'px';
     drop.style.top = (y + jitterY) + 'px';
-    drop.style.transform = `translateY(0) rotate(${(Math.random()-0.5)*20}deg)`;
+    drop.style.transform = `translateY(0) rotate(${(Math.random() - 0.5) * 20}deg)`;
 
     bloodDropsContainer.appendChild(drop);
 
@@ -107,9 +107,9 @@ document.addEventListener('mousedown', (e) => {
     smear.className = 'blood-smear';
 
     // place smear where cursor is and give a small random rotation
-    smear.style.left = (e.clientX + (Math.random()-0.5)*20) + 'px';
-    smear.style.top = (e.clientY + (Math.random()-0.5)*20) + 'px';
-    smear.style.transform = `translate(-50%, -50%) rotate(${(Math.random()-0.5)*25}deg)`;
+    smear.style.left = (e.clientX + (Math.random() - 0.5) * 20) + 'px';
+    smear.style.top = (e.clientY + (Math.random() - 0.5) * 20) + 'px';
+    smear.style.transform = `translate(-50%, -50%) rotate(${(Math.random() - 0.5) * 25}deg)`;
 
     bloodDropsContainer.appendChild(smear);
 
@@ -141,28 +141,28 @@ let gainNode;
 
 function createHorrorSound() {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
+
     // Create a low frequency oscillator for creepy ambience
     oscillator = audioContext.createOscillator();
     gainNode = audioContext.createGain();
-    
+
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(55, audioContext.currentTime); // Low A note
-    
+
     // Create a subtle tremolo effect
     const tremolo = audioContext.createOscillator();
     tremolo.frequency.setValueAtTime(3, audioContext.currentTime);
     const tremoloGain = audioContext.createGain();
     tremoloGain.gain.setValueAtTime(0.3, audioContext.currentTime);
-    
+
     tremolo.connect(tremoloGain);
     tremoloGain.connect(gainNode.gain);
-    
+
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
-    
+
     gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-    
+
     return { oscillator, tremolo };
 }
 
@@ -206,13 +206,13 @@ function toggleMobileMenu() {
 }
 
 // Open/close on hamburger click (toggle)
-hamburger.addEventListener('click', function(e) {
+hamburger.addEventListener('click', function (e) {
     e.stopPropagation(); // prevent the document click immediately closing it
     toggleMobileMenu();
 });
 
 // Close when clicking overlay (transparent outside area)
-mobileMenuOverlay.addEventListener('click', function() {
+mobileMenuOverlay.addEventListener('click', function () {
     if (mobileMenu.classList.contains('active')) {
         toggleMobileMenu();
     }
@@ -220,7 +220,7 @@ mobileMenuOverlay.addEventListener('click', function() {
 
 // Close when clicking any nav link (keep your existing behavior)
 mobileNavLinks.forEach(link => {
-    link.addEventListener('click', function() {
+    link.addEventListener('click', function () {
         if (mobileMenu.classList.contains('active')) {
             toggleMobileMenu();
         }
@@ -228,7 +228,7 @@ mobileNavLinks.forEach(link => {
 });
 
 // Close if the user clicks anywhere outside the menu (anywhere on document)
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
         if (mobileMenu.classList.contains('active')) {
             toggleMobileMenu();
@@ -237,7 +237,7 @@ document.addEventListener('click', function(e) {
 });
 
 // Also stop clicks inside the menu from bubbling (so a click on menu content does not trigger document click)
-mobileMenu.addEventListener('click', function(e) {
+mobileMenu.addEventListener('click', function (e) {
     e.stopPropagation();
 });
 
@@ -248,9 +248,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         }
     });
@@ -292,62 +292,62 @@ window.addEventListener('scroll', () => {
     });
 });
 // Certificates: modal on desktop, thumbnail open on mobile
-(function(){
-  const modal = document.getElementById('certificate-modal');
-  const modalOverlay = modal && modal.querySelector('.cert-modal-overlay');
-  const modalImg = modal && modal.querySelector('.cert-modal-img');
-  const closeBtn = modal && modal.querySelector('.cert-modal-close');
+(function () {
+    const modal = document.getElementById('certificate-modal');
+    const modalOverlay = modal && modal.querySelector('.cert-modal-overlay');
+    const modalImg = modal && modal.querySelector('.cert-modal-img');
+    const closeBtn = modal && modal.querySelector('.cert-modal-close');
 
-  function openModal(src, alt) {
-    if (!modal) return;
-    modalImg.src = src;
-    modalImg.alt = alt || 'Certificate';
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    if (!modal) return;
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    setTimeout(()=> { modalImg.src = ''; }, 250);
-  }
+    function openModal(src, alt) {
+        if (!modal) return;
+        modalImg.src = src;
+        modalImg.alt = alt || 'Certificate';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(() => { modalImg.src = ''; }, 250);
+    }
 
-  // View button: desktop only (opens modal)
-  document.querySelectorAll('.view-cert').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      if (window.innerWidth < 768) return; // ignore on mobile
-      const card = btn.closest('.cert-card');
-      const thumb = card && card.querySelector('.cert-thumb');
-      const large = thumb && thumb.getAttribute('data-large');
-      const alt = card && card.querySelector('.cert-name')?.textContent;
-      if (large) openModal(large, alt);
+    // View button: desktop only (opens modal)
+    document.querySelectorAll('.view-cert').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            if (window.innerWidth < 768) return; // ignore on mobile
+            const card = btn.closest('.cert-card');
+            const thumb = card && card.querySelector('.cert-thumb');
+            const large = thumb && thumb.getAttribute('data-large');
+            const alt = card && card.querySelector('.cert-name')?.textContent;
+            if (large) openModal(large, alt);
+        });
     });
-  });
 
-  // Thumbnail click behavior:
-  document.querySelectorAll('.cert-thumb').forEach(t => {
-    t.addEventListener('click', function(e) {
-      const large = t.getAttribute('data-large');
-      if (!large) return;
-      if (window.innerWidth < 768) {
-        window.open(large, '_blank', 'noopener');
-      } else {
-        openModal(large, t.getAttribute('aria-label') || 'Certificate');
-      }
+    // Thumbnail click behavior:
+    document.querySelectorAll('.cert-thumb').forEach(t => {
+        t.addEventListener('click', function (e) {
+            const large = t.getAttribute('data-large');
+            if (!large) return;
+            if (window.innerWidth < 768) {
+                window.open(large, '_blank', 'noopener');
+            } else {
+                openModal(large, t.getAttribute('aria-label') || 'Certificate');
+            }
+        });
     });
-  });
 
-  if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
-  });
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+    });
 
-  window.addEventListener('resize', () => {
-    if (modal && modal.classList.contains('open') && window.innerWidth < 768) closeModal();
-  });
+    window.addEventListener('resize', () => {
+        if (modal && modal.classList.contains('open') && window.innerWidth < 768) closeModal();
+    });
 })();
 
 // Mouse parallax effect for background blobs
@@ -357,11 +357,11 @@ let mouseY = 0;
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    
+
     const blob1 = document.querySelector('.blob-1');
     const blob2 = document.querySelector('.blob-2');
     const blob3 = document.querySelector('.blob-3');
-    
+
     if (blob1) {
         blob1.style.transform = `translate(${mouseX * 0.02}px, ${mouseY * 0.02}px)`;
     }
@@ -419,22 +419,22 @@ backToTopLinks.forEach(link => {
 
 // Add hover effect to tech tags
 document.querySelectorAll('.tech-tag').forEach(tag => {
-    tag.addEventListener('mouseenter', function() {
+    tag.addEventListener('mouseenter', function () {
         this.style.transform = 'translateY(-2px) scale(1.05)';
     });
-    
-    tag.addEventListener('mouseleave', function() {
+
+    tag.addEventListener('mouseleave', function () {
         this.style.transform = 'translateY(0) scale(1)';
     });
 });
 
 // Skill icons rotation on hover
 document.querySelectorAll('.skill-icon').forEach(icon => {
-    icon.addEventListener('mouseenter', function() {
+    icon.addEventListener('mouseenter', function () {
         this.style.animation = 'spin 0.5s ease-in-out';
     });
-    
-    icon.addEventListener('animationend', function() {
+
+    icon.addEventListener('animationend', function () {
         this.style.animation = '';
     });
 });
@@ -452,7 +452,7 @@ document.head.appendChild(style);
 
 // Project card hover effects
 document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
         const images = this.querySelectorAll('.project-image');
         images.forEach((img, index) => {
             setTimeout(() => {
@@ -461,8 +461,8 @@ document.querySelectorAll('.project-card').forEach(card => {
             }, index * 50);
         });
     });
-    
-    card.addEventListener('mouseleave', function() {
+
+    card.addEventListener('mouseleave', function () {
         const images = this.querySelectorAll('.project-image');
         images.forEach(img => {
             img.style.transform = 'scale(1)';
@@ -472,14 +472,14 @@ document.querySelectorAll('.project-card').forEach(card => {
 
 // Add click effect to buttons
 document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function(e) {
+    button.addEventListener('click', function (e) {
         // Create ripple effect
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
-        
+
         ripple.style.width = ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
@@ -489,11 +489,11 @@ document.querySelectorAll('.btn').forEach(button => {
         ripple.style.transform = 'scale(0)';
         ripple.style.animation = 'ripple 0.6s ease-out';
         ripple.style.pointerEvents = 'none';
-        
+
         this.style.position = 'relative';
         this.style.overflow = 'hidden';
         this.appendChild(ripple);
-        
+
         setTimeout(() => ripple.remove(), 600);
     });
 });
@@ -511,70 +511,70 @@ rippleStyle.textContent = `
 document.head.appendChild(rippleStyle);
 // EmailJS contact form (with visible on-page success message)
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('contactForm');
-  const statusEl = document.getElementById('contactStatus');
-  const submitBtn = document.getElementById('sendButton');
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('contactStatus');
+    const submitBtn = document.getElementById('sendButton');
 
-  if (!form) return;
+    if (!form) return;
 
-  function showStatus(message, isSuccess = true) {
-    if (!statusEl) return;
+    function showStatus(message, isSuccess = true) {
+        if (!statusEl) return;
 
-    statusEl.textContent = message;
+        statusEl.textContent = message;
 
-    // Change color
-    if (isSuccess) {
-      statusEl.classList.remove('error');
-    } else {
-      statusEl.classList.add('error');
+        // Change color
+        if (isSuccess) {
+            statusEl.classList.remove('error');
+        } else {
+            statusEl.classList.add('error');
+        }
+
+        // Fade in
+        statusEl.style.opacity = 1;
+
+        // Auto fade out after 5 sec
+        setTimeout(() => {
+            statusEl.style.opacity = 0;
+        }, 5000);
     }
 
-    // Fade in
-    statusEl.style.opacity = 1;
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    // Auto fade out after 5 sec
-    setTimeout(() => {
-      statusEl.style.opacity = 0;
-    }, 5000);
-  }
+        // Validate
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+        // Gather fields
+        const templateParams = {
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            subject: document.getElementById('subject').value.trim(),
+            message: document.getElementById('message').value.trim(),
+        };
 
-    // Validate
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
+        // Button state
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
 
-    // Gather fields
-    const templateParams = {
-      name: document.getElementById('name').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      subject: document.getElementById('subject').value.trim(),
-      message: document.getElementById('message').value.trim(),
-    };
+        // Send Email
+        emailjs.send('service_e3z3alb', 'template_wiu8pvb', templateParams)
+            .then(() => {
+                showStatus("🎉 Your message has been sent successfully!", true);
+                form.reset();
 
-    // Button state
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Send Message";
+            })
+            .catch(() => {
+                showStatus("❌ Failed to send message. Try again later.", false);
 
-    // Send Email
-    emailjs.send('service_e3z3alb', 'template_wiu8pvb', templateParams)
-      .then(() => {
-        showStatus("🎉 Your message has been sent successfully!", true);
-        form.reset();
-
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Send Message";
-      })
-      .catch(() => {
-        showStatus("❌ Failed to send message. Try again later.", false);
-
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Send Message";
-      });
-  });
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Send Message";
+            });
+    });
 });
 
 // Add typing effect for achievement cards on view
@@ -593,98 +593,119 @@ function createBloodDrips() {
     });
 }
 // Bottom Horror Pro — walker controller (randomized start & speeds)
-(function() {
-  const stage = document.getElementById('bottom-horror-pro');
-  if (!stage) return;
+(function () {
+    const stage = document.getElementById('bottom-horror-pro');
+    if (!stage) return;
 
-  // select walkers
-  const walkerA = stage.querySelector('.tiny-zombie.walker.a');
-  const walkerB = stage.querySelector('.tiny-zombie.walker.b');
+    // select walkers
+    const walkerA = stage.querySelector('.tiny-zombie.walker.a');
+    const walkerB = stage.querySelector('.tiny-zombie.walker.b');
 
-  // configuration (ms)
-  const config = {
-    walkerA: { duration: 16000, delayRange: [0, 2500], scale: 1.0 },
-    walkerB: { duration: 11000, delayRange: [2000, 6000], scale: 0.78 }
-  };
+    // configuration (ms)
+    const config = {
+        walkerA: { duration: 16000, delayRange: [0, 2500], scale: 1.0 },
+        walkerB: { duration: 11000, delayRange: [2000, 6000], scale: 0.78 }
+    };
 
-  // utility to random in range
-  const rand = (min, max) => min + Math.random() * (max - min);
+    // utility to random in range
+    const rand = (min, max) => min + Math.random() * (max - min);
 
-  function animateWalker(el, opts) {
-    // randomize seed offsets
-    const dur = opts.duration * (0.9 + Math.random()*0.25); // small variability
-    const startDelay = rand(opts.delayRange[0], opts.delayRange[1]);
+    function animateWalker(el, opts) {
+        // randomize seed offsets
+        const dur = opts.duration * (0.9 + Math.random() * 0.25); // small variability
+        const startDelay = rand(opts.delayRange[0], opts.delayRange[1]);
 
-    // starting position (off-screen left)
-    el.style.left = `${-240 - Math.random()*120}px`;
-    el.style.opacity = (0.42 + Math.random()*0.12).toFixed(2);
-    el.style.transform = `scale(${opts.scale})`;
+        // starting position (off-screen left)
+        el.style.left = `${-240 - Math.random() * 120}px`;
+        el.style.opacity = (0.42 + Math.random() * 0.12).toFixed(2);
+        el.style.transform = `scale(${opts.scale})`;
 
-    // set small head bob by toggling .walking class
-    el.classList.add('walking');
+        // set small head bob by toggling .walking class
+        el.classList.add('walking');
 
-    // schedule move using transform with translateX
-    setTimeout(() => {
-      // compute translate length to move across screen plus extra margin
-      const screenW = window.innerWidth;
-      const translateX = screenW + 520 + Math.random()*300; // variable travel
-      el.style.transition = `transform ${dur}ms linear`;
-      // preserve scale when animating: translateX(...) scale(...) pattern
-      el.style.transform = `translateX(${translateX}px) scale(${opts.scale})`;
+        // schedule move using transform with translateX
+        setTimeout(() => {
+            // compute translate length to move across screen plus extra margin
+            const screenW = window.innerWidth;
+            const translateX = screenW + 520 + Math.random() * 300; // variable travel
+            el.style.transition = `transform ${dur}ms linear`;
+            // preserve scale when animating: translateX(...) scale(...) pattern
+            el.style.transform = `translateX(${translateX}px) scale(${opts.scale})`;
 
-      // subtle footstep shadow squash loop
-      const footprintInterval = setInterval(() => {
-        // squash
-        const shadow = el.querySelector('.tz-shadow');
-        if (!shadow) { clearInterval(footprintInterval); return; }
-        shadow.style.transform = 'scaleY(0.78)';
-        shadow.style.opacity = '0.85';
-        setTimeout(()=> {
-          shadow.style.transform = 'scaleY(1)';
-          shadow.style.opacity = '0.62';
-        }, 140);
-      }, 380);
+            // subtle footstep shadow squash loop
+            const footprintInterval = setInterval(() => {
+                // squash
+                const shadow = el.querySelector('.tz-shadow');
+                if (!shadow) { clearInterval(footprintInterval); return; }
+                shadow.style.transform = 'scaleY(0.78)';
+                shadow.style.opacity = '0.85';
+                setTimeout(() => {
+                    shadow.style.transform = 'scaleY(1)';
+                    shadow.style.opacity = '0.62';
+                }, 140);
+            }, 380);
 
-      // cleanup after finishing travel
-      const cleanupTimeout = setTimeout(() => {
-        clearInterval(footprintInterval);
-        // reset for next cycle: jump back to left and restart with new params
-        el.style.transition = '';
-        el.style.transform = `translateX(0px) scale(${opts.scale})`;
-        // tiny pause before next cycle
-        setTimeout(()=> animateWalker(el, opts), rand(1400, 3200));
-      }, dur + 200);
+            // cleanup after finishing travel
+            const cleanupTimeout = setTimeout(() => {
+                clearInterval(footprintInterval);
+                // reset for next cycle: jump back to left and restart with new params
+                el.style.transition = '';
+                el.style.transform = `translateX(0px) scale(${opts.scale})`;
+                // tiny pause before next cycle
+                setTimeout(() => animateWalker(el, opts), rand(1400, 3200));
+            }, dur + 200);
 
-      // if tab hidden, cancel timers gracefully (optional)
-      document.addEventListener('visibilitychange', function onVis() {
-        if (document.hidden) {
-          // reduce animations by removing transition
-          el.style.transition = '';
-        }
-      }, { once: true });
+            // if tab hidden, cancel timers gracefully (optional)
+            document.addEventListener('visibilitychange', function onVis() {
+                if (document.hidden) {
+                    // reduce animations by removing transition
+                    el.style.transition = '';
+                }
+            }, { once: true });
 
-    }, startDelay);
-  }
+        }, startDelay);
+    }
 
-  // start both walkers
-  animateWalker(walkerA, config.walkerA);
-  animateWalker(walkerB, config.walkerB);
+    // start both walkers
+    animateWalker(walkerA, config.walkerA);
+    animateWalker(walkerB, config.walkerB);
 
-  // subtle responsive adjustment on resize (restarts walkers to recalc width)
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      // quickly restart walkers (stop by removing element and re-adding clone)
-      [walkerA, walkerB].forEach((w)=>{
-        if (!w) return;
-        // reset transition to avoid stuck state
-        w.style.transition = '';
-        w.style.transform = '';
-      });
-    }, 400);
-  });
+    // subtle responsive adjustment on resize (restarts walkers to recalc width)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            // quickly restart walkers (stop by removing element and re-adding clone)
+            [walkerA, walkerB].forEach((w) => {
+                if (!w) return;
+                // reset transition to avoid stuck state
+                w.style.transition = '';
+                w.style.transform = '';
+            });
+        }, 400);
+    });
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // FULL REPORT BUTTON — dynamic links
+    document.querySelectorAll(".project-report").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const link = btn.getAttribute("data-report");
+            if (link) window.open(link, "_blank");
+        });
+    });
+
+    // VIEW DASHBOARD BUTTON — dynamic links
+    document.querySelectorAll(".project-dashboard").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const link = btn.getAttribute("data-dashboard");
+            if (link) window.open(link, "_blank");
+        });
+    });
+
+});
+
 
 // Call on page load
 createBloodDrips();

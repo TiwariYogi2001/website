@@ -1,683 +1,530 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogesh Tiwari - Data Analyst Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yogesh Tiwari - Data Analyst Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- Custom Skeleton Hand Cursor -->
-    <div class="skeleton-cursor">
-        <svg viewBox="0 0 80 120" width="50" height="75">
-            <defs>
-                <!-- Bone texture pattern -->
-                <pattern id="boneTexture" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <rect width="20" height="20" fill="#d4d4d4"/>
-                    <path d="M0,0 L5,5 M15,15 L20,20 M0,20 L5,15 M15,5 L20,0" stroke="#a8a8a8" stroke-width="0.5"/>
-                </pattern>
-                <!-- Shadow filter -->
-                <filter id="shadow">
-                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
-                </filter>
-            </defs>
-            
-            <g transform="rotate(-25 40 60)" filter="url(#shadow)">
-                <!-- Index Finger (pointing) -->
-                <g>
-                    <rect x="28" y="5" width="8" height="18" rx="4" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <rect x="28" y="24" width="8" height="16" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <circle cx="32" cy="23" r="3" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                    <ellipse cx="32" cy="3" rx="5" ry="6" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                </g>
-                
-                <!-- Middle Finger -->
-                <g>
-                    <rect x="38" y="8" width="8" height="16" rx="4" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <rect x="38" y="25" width="8" height="18" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <circle cx="42" cy="24" r="3" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                    <ellipse cx="42" cy="6" rx="5" ry="6" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                </g>
-                
-                <!-- Ring Finger -->
-                <g>
-                    <rect x="48" y="10" width="7" height="16" rx="3.5" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <rect x="48" y="27" width="7" height="17" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <circle cx="51.5" cy="26" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                    <ellipse cx="51.5" cy="8" rx="4.5" ry="5.5" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                </g>
-                
-                <!-- Pinky Finger -->
-                <g>
-                    <rect x="56" y="15" width="6" height="14" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <rect x="56" y="30" width="6" height="15" rx="2.5" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <circle cx="59" cy="29" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                    <ellipse cx="59" cy="13" rx="4" ry="5" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                </g>
-                
-                <!-- Palm -->
-                <path d="M26,42 L26,68 C26,72 28,74 32,74 L56,74 C60,74 62,72 62,68 L62,45 L56,45 L55,42 L48,44 L46,42 L38,44 L36,42 Z" 
-                      fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1.5"/>
-                
-                <!-- Metacarpal bones (hand bones) -->
-                <line x1="30" y1="45" x2="32" y2="65" stroke="#a8a8a8" stroke-width="2" opacity="0.6"/>
-                <line x1="40" y1="45" x2="42" y2="65" stroke="#a8a8a8" stroke-width="2" opacity="0.6"/>
-                <line x1="50" y1="45" x2="52" y2="65" stroke="#a8a8a8" stroke-width="2" opacity="0.6"/>
-                <line x1="58" y1="47" x2="58" y2="65" stroke="#a8a8a8" stroke-width="2" opacity="0.6"/>
-                
-                <!-- Knuckle joints -->
-                <circle cx="30" cy="43" r="3" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                <circle cx="42" cy="43" r="3" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                <circle cx="51.5" cy="44" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                <circle cx="59" cy="45" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                
-                <!-- Thumb -->
-                <g>
-                    <ellipse cx="22" cy="62" rx="5" ry="7" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"/>
-                    <rect x="17" y="68" width="8" height="14" rx="4" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" transform="rotate(-30 21 75)"/>
-                    <circle cx="20" cy="67" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1"/>
-                    <line x1="21" y1="70" x2="23" y2="80" stroke="#a8a8a8" stroke-width="2" opacity="0.6"/>
-                </g>
-                
-                <!-- Wrist bones -->
-                <rect x="28" y="74" width="32" height="12" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1.5"/>
-                <line x1="35" y1="76" x2="35" y2="84" stroke="#a8a8a8" stroke-width="1.5" opacity="0.5"/>
-                <line x1="44" y1="76" x2="44" y2="84" stroke="#a8a8a8" stroke-width="1.5" opacity="0.5"/>
-                <line x1="53" y1="76" x2="53" y2="84" stroke="#a8a8a8" stroke-width="1.5" opacity="0.5"/>
-            </g>
-        </svg>
+  <!-- Custom Skeleton Hand Cursor -->
+  <div class="skeleton-cursor">
+    <svg viewBox="0 0 80 120" width="50" height="75">
+      <defs>
+        <!-- Bone texture pattern -->
+        <pattern id="boneTexture" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <rect width="20" height="20" fill="#d4d4d4" />
+          <path d="M0,0 L5,5 M15,15 L20,20 M0,20 L5,15 M15,5 L20,0" stroke="#a8a8a8" stroke-width="0.5" />
+        </pattern>
+        <!-- Shadow filter -->
+        <filter id="shadow">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.5" />
+        </filter>
+      </defs>
+
+      <g transform="rotate(-25 40 60)" filter="url(#shadow)">
+        <!-- Index Finger (pointing) -->
+        <g>
+          <rect x="28" y="5" width="8" height="18" rx="4" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+          <rect x="28" y="24" width="8" height="16" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+          <circle cx="32" cy="23" r="3" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+          <ellipse cx="32" cy="3" rx="5" ry="6" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+        </g>
+
+        <!-- Middle Finger -->
+        <g>
+          <rect x="38" y="8" width="8" height="16" rx="4" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+          <rect x="38" y="25" width="8" height="18" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+          <circle cx="42" cy="24" r="3" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+          <ellipse cx="42" cy="6" rx="5" ry="6" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+        </g>
+
+        <!-- Ring Finger -->
+        <g>
+          <rect x="48" y="10" width="7" height="16" rx="3.5" fill="url(#boneTexture)" stroke="#8b0000"
+            stroke-width="1" />
+          <rect x="48" y="27" width="7" height="17" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+          <circle cx="51.5" cy="26" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+          <ellipse cx="51.5" cy="8" rx="4.5" ry="5.5" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+        </g>
+
+        <!-- Pinky Finger -->
+        <g>
+          <rect x="56" y="15" width="6" height="14" rx="3" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+          <rect x="56" y="30" width="6" height="15" rx="2.5" fill="url(#boneTexture)" stroke="#8b0000"
+            stroke-width="1" />
+          <circle cx="59" cy="29" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+          <ellipse cx="59" cy="13" rx="4" ry="5" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+        </g>
+
+        <!-- Palm -->
+        <path
+          d="M26,42 L26,68 C26,72 28,74 32,74 L56,74 C60,74 62,72 62,68 L62,45 L56,45 L55,42 L48,44 L46,42 L38,44 L36,42 Z"
+          fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1.5" />
+
+        <!-- Metacarpal bones (hand bones) -->
+        <line x1="30" y1="45" x2="32" y2="65" stroke="#a8a8a8" stroke-width="2" opacity="0.6" />
+        <line x1="40" y1="45" x2="42" y2="65" stroke="#a8a8a8" stroke-width="2" opacity="0.6" />
+        <line x1="50" y1="45" x2="52" y2="65" stroke="#a8a8a8" stroke-width="2" opacity="0.6" />
+        <line x1="58" y1="47" x2="58" y2="65" stroke="#a8a8a8" stroke-width="2" opacity="0.6" />
+
+        <!-- Knuckle joints -->
+        <circle cx="30" cy="43" r="3" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+        <circle cx="42" cy="43" r="3" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+        <circle cx="51.5" cy="44" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+        <circle cx="59" cy="45" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+
+        <!-- Thumb -->
+        <g>
+          <ellipse cx="22" cy="62" rx="5" ry="7" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1" />
+          <rect x="17" y="68" width="8" height="14" rx="4" fill="url(#boneTexture)" stroke="#8b0000" stroke-width="1"
+            transform="rotate(-30 21 75)" />
+          <circle cx="20" cy="67" r="2.5" fill="#a8a8a8" stroke="#8b0000" stroke-width="1" />
+          <line x1="21" y1="70" x2="23" y2="80" stroke="#a8a8a8" stroke-width="2" opacity="0.6" />
+        </g>
+
+        <!-- Wrist bones -->
+        <rect x="28" y="74" width="32" height="12" rx="3" fill="url(#boneTexture)" stroke="#8b0000"
+          stroke-width="1.5" />
+        <line x1="35" y1="76" x2="35" y2="84" stroke="#a8a8a8" stroke-width="1.5" opacity="0.5" />
+        <line x1="44" y1="76" x2="44" y2="84" stroke="#a8a8a8" stroke-width="1.5" opacity="0.5" />
+        <line x1="53" y1="76" x2="53" y2="84" stroke="#a8a8a8" stroke-width="1.5" opacity="0.5" />
+      </g>
+    </svg>
+  </div>
+
+  <!-- Blood Drops from Cursor -->
+  <div class="blood-drops-container"></div>
+
+  <!-- Horror Sound Toggle -->
+  <div class="sound-toggle" id="soundToggle">
+    <i class="fas fa-volume-up"></i>
+  </div>
+
+  <!-- Blood drip effects -->
+  <div class="blood-drip" style="left: 15%;"></div>
+  <div class="blood-drip" style="left: 35%; animation-delay: 1s;"></div>
+  <div class="blood-drip" style="left: 55%; animation-delay: 2s;"></div>
+  <div class="blood-drip" style="left: 75%; animation-delay: 0.5s;"></div>
+  <div class="blood-drip" style="left: 85%; animation-delay: 1.5s;"></div>
+
+  <!-- Fog/Zombie Background -->
+  <div class="fog-container">
+    <div class="fog fog-1"></div>
+    <div class="fog fog-2"></div>
+    <div class="fog fog-3"></div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#home" class="nav-link active">Home</a>
+    <a href="#about" class="nav-link">About Me</a>
+    <a href="#skill" class="nav-link">Skills</a>
+    <a href="#background" class="nav-link">Background</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#achievement" class="nav-link">Achievement</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </nav>
+
+  <!-- Mobile Hamburger Menu -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Mobile Side Menu (Compact & Transparent) -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenu">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="mobile-menu-content">
+      <a href="#home" class="mobile-nav-link">HOME</a>
+      <a href="#about" class="mobile-nav-link">ABOUT ME</a>
+      <a href="#skill" class="mobile-nav-link">SKILLS</a>
+      <a href="#background" class="mobile-nav-link">BACKGROUND</a>
+      <a href="#projects" class="mobile-nav-link">PROJECTS</a>
+      <a href="#achievement" class="mobile-nav-link">ACHIEVEMENT</a>
+      <a href="#contact" class="mobile-nav-link">CONTACT</a>
     </div>
-    
-    <!-- Blood Drops from Cursor -->
-    <div class="blood-drops-container"></div>
-    
-    <!-- Horror Sound Toggle -->
-    <div class="sound-toggle" id="soundToggle">
-        <i class="fas fa-volume-up"></i>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="badge">BUSINESS ANALYST</div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>
+          YOGESH <span class="highlight">TIWARI</span>
+        </h1>
+        <p>I’m a Business Analyst who transforms complex data into actionable insights that help businesses make
+          informed, strategic decisions. I work with B2B organizations to uncover hidden trends, streamline processes,
+          and enhance performance through advanced analytics and business intelligence.
+          In addition to analytics, I also contribute to project acquisition efforts, including analyzing client
+          requirements, preparing data-driven proposals, and helping secure new external projects that support company
+          growth and long-term partnerships.</p>
+      </div>
+      <div class="profile-img">
+        <img src="profile.jpg" alt="Yogesh Tiwari">
+      </div>
     </div>
-
-    <!-- Blood drip effects -->
-    <div class="blood-drip" style="left: 15%;"></div>
-    <div class="blood-drip" style="left: 35%; animation-delay: 1s;"></div>
-    <div class="blood-drip" style="left: 55%; animation-delay: 2s;"></div>
-    <div class="blood-drip" style="left: 75%; animation-delay: 0.5s;"></div>
-    <div class="blood-drip" style="left: 85%; animation-delay: 1.5s;"></div>
-
-    <!-- Fog/Zombie Background -->
-    <div class="fog-container">
-        <div class="fog fog-1"></div>
-        <div class="fog fog-2"></div>
-        <div class="fog fog-3"></div>
+    <div class="scroll-icon">
+      <i class="fas fa-chevron-down"></i>
     </div>
+  </section>
 
-    <!-- Animated Background -->
-    <div class="animated-bg">
-        <div class="bg-blob blob-1"></div>
-        <div class="bg-blob blob-2"></div>
-        <div class="bg-blob blob-3"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav id="navbar">
-        <a href="#home" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About Me</a>
-        <a href="#skill" class="nav-link">Skills</a>
-        <a href="#background" class="nav-link">Background</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#achievement" class="nav-link">Achievement</a>
-        <a href="#contact" class="nav-link">Contact</a>
-    </nav>
-
-    <!-- Mobile Hamburger Menu -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <!-- Mobile Side Menu (Compact & Transparent) -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="close-menu" id="closeMenu">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="mobile-menu-content">
-            <a href="#home" class="mobile-nav-link">HOME</a>
-            <a href="#about" class="mobile-nav-link">ABOUT ME</a>
-            <a href="#skill" class="mobile-nav-link">SKILLS</a>
-            <a href="#background" class="mobile-nav-link">BACKGROUND</a>
-            <a href="#projects" class="mobile-nav-link">PROJECTS</a>
-            <a href="#achievement" class="mobile-nav-link">ACHIEVEMENT</a>
-            <a href="#contact" class="mobile-nav-link">CONTACT</a>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="badge">BUSINESS ANALYST</div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>
-                    YOGESH <span class="highlight">TIWARI</span>
-                </h1>
-                <p>I’m a Business Analyst who transforms complex data into actionable insights that help businesses make informed, strategic decisions. I work with B2B organizations to uncover hidden trends, streamline processes, and enhance performance through advanced analytics and business intelligence.
-                    In addition to analytics, I also contribute to project acquisition efforts, including analyzing client requirements, preparing data-driven proposals, and helping secure new external projects that support company growth and long-term partnerships.</p>
-            </div>
-            <div class="profile-img">
-                <img src="profile.jpg" alt="Yogesh Tiwari">
-            </div>
-        </div>
-        <div class="scroll-icon">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="intro-section" id="about">
-        <h2 class="intro-heading">Hello,<br>I'm <span class="highlight">TIWARI!</span></h2>
-        <div class="intro-text">
-            <p><strong>Business Analyst | Data Analytics Enthusiast | B2B Insights Strategist</strong></p>
-            <p>My professional journey has always been guided by curiosity and a desire to create meaningful solutions. I started as a Unity Developer at Mobzway Technologies, where writing gameplay logic and shaping interactive experiences taught me how to think clearly, design efficiently, and solve problems creatively. That foundation led me into the world of AR/VR at AIC MUJ Innovation Foundation, where I worked on immersive prototypes, supported startup ideas, and collaborated closely with clients to turn concepts into working experiences. It was here that I discovered how powerful technology can be when aligned with real business needs. Over time, I realized that behind every effective solution, there is data quietly shaping the direction—and that realization pulled me toward analytics. Today, as a Business Analyst at NextLeap, I bring together my development background and analytical mindset to convert raw data into insights that support strategic decision-making. I build dashboards, uncover trends, and streamline reporting while also contributing to project acquisition by understanding client challenges and preparing data-driven proposals. Each phase of my journey has strengthened my ability to approach problems with creativity, logic, and a strong focus on delivering real business value.</p>
-            <!-- <p>My journey began as a Mechanical Engineer turned data-driven problem solver, where curiosity for numbers and patterns led me to the world of analytics. Over time, I've developed expertise in data cleaning, visualization, reporting automation, and performance dashboards — enabling leaders to see the bigger picture and act confidently.</p>
+  <!-- About Section -->
+  <section class="intro-section" id="about">
+    <h2 class="intro-heading">Hello,<br>I'm <span class="highlight">TIWARI!</span></h2>
+    <div class="intro-text">
+      <p><strong>Business Analyst | Data Analytics Enthusiast | B2B Insights Strategist</strong></p>
+      <p>My professional journey has always been guided by curiosity and a desire to create meaningful solutions. I
+        started as a Unity Developer at Mobzway Technologies, where writing gameplay logic and shaping interactive
+        experiences taught me how to think clearly, design efficiently, and solve problems creatively. That foundation
+        led me into the world of AR/VR at AIC MUJ Innovation Foundation, where I worked on immersive prototypes,
+        supported startup ideas, and collaborated closely with clients to turn concepts into working experiences. It was
+        here that I discovered how powerful technology can be when aligned with real business needs. Over time, I
+        realized that behind every effective solution, there is data quietly shaping the direction—and that realization
+        pulled me toward analytics. Today, as a Business Analyst at NextLeap, I bring together my development background
+        and analytical mindset to convert raw data into insights that support strategic decision-making. I build
+        dashboards, uncover trends, and streamline reporting while also contributing to project acquisition by
+        understanding client challenges and preparing data-driven proposals. Each phase of my journey has strengthened
+        my ability to approach problems with creativity, logic, and a strong focus on delivering real business value.
+      </p>
+      <!-- <p>My journey began as a Mechanical Engineer turned data-driven problem solver, where curiosity for numbers and patterns led me to the world of analytics. Over time, I've developed expertise in data cleaning, visualization, reporting automation, and performance dashboards — enabling leaders to see the bigger picture and act confidently.</p>
             <p>I'm passionate about exploring how data shapes business growth, identifying trends, and crafting strategies that bridge the gap between business objectives and data insights. Whether it's optimizing marketing funnels, tracking KPIs, or creating interactive dashboards — my goal is to deliver clarity, efficiency, and measurable impact.</p> -->
-            
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/yogesh-tiwari2000" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                 <!-- keep your icon markup / <i class="fab fa-linkedin"> or <img> inside -->
-                 <i class="fab fa-linkedin"></i>
-                </a>
 
-                
-                <a href="https://wa.me/qr/6AC4PS544CA7A1" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://github.com/TiwariYogi2001" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/_mysterio_2.o?igsh=OG9yNzg4OW9yZDhq" target="_blank" aria-label="GitHub"><i class="fab fa-instagram"></i></a>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/yogesh-tiwari2000" target="_blank" rel="noopener noreferrer"
+          aria-label="LinkedIn">
+          <!-- keep your icon markup / <i class="fab fa-linkedin"> or <img> inside -->
+          <i class="fab fa-linkedin"></i>
+        </a>
 
-                <a href="files/resume.pdf" download aria-label="Download CV"><i class="fas fa-download"></i></a>
-            </div>
+
+        <a href="https://wa.me/qr/6AC4PS544CA7A1" target="_blank" aria-label="WhatsApp"><i
+            class="fab fa-whatsapp"></i></a>
+        <a href="https://github.com/TiwariYogi2001" target="_blank" aria-label="GitHub"><i
+            class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/_mysterio_2.o?igsh=OG9yNzg4OW9yZDhq" target="_blank" aria-label="GitHub"><i
+            class="fab fa-instagram"></i></a>
+
+        <a href="files/resume.pdf" download aria-label="Download CV"><i class="fas fa-download"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills-section" id="skill">
+    <div class="section-badge">LANGUAGES | TOOLS | METHODS</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Technical Skills</h3>
+        <div class="skill-icons">
+          <div class="skill-icon">SQL</div>
+          <div class="skill-icon">Python</div>
+          <div class="skill-icon">Advanced Excel</div>
+          <div class="skill-icon">Power BI</div>
+          <div class="skill-icon">Tableau</div>
+          <div class="skill-icon">MySQL</div>
+          <div class="skill-icon">PostgreSQL</div>
+          <div class="skill-icon">Azure Database</div>
+          <div class="skill-icon">Unity 3D</div>
+          <div class="skill-icon">C#</div>
         </div>
-    </section>
+      </div>
 
-    <!-- Skills Section -->
-    <section class="skills-section" id="skill">
-        <div class="section-badge">LANGUAGES | TOOLS | METHODS</div>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>Technical Skills</h3>
-                <div class="skill-icons">
-                    <div class="skill-icon">SQL</div>
-                    <div class="skill-icon">Python</div>
-                    <div class="skill-icon">Advanced Excel</div>
-                    <div class="skill-icon">Power BI</div>
-                    <div class="skill-icon">Tableau</div>
-                    <div class="skill-icon">MySQL</div>
-                    <div class="skill-icon">PostgreSQL</div>
-                    <div class="skill-icon">Azure Database</div>
-                    <div class="skill-icon">Unity 3D</div>
-                    <div class="skill-icon">C#</div>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <h3>Data Analytic Tools</h3>
-                <div class="skill-icons">
-                    <div class="skill-icon">Excel</div>
-                    <div class="skill-icon">Google Sheets</div>
-                    <div class="skill-icon">GitHub</div>
-                    <div class="skill-icon">Jira</div>
-                    <div class="skill-icon">Matplotlib</div>
-                    <div class="skill-icon">Seaborn</div>
-                    <div class="skill-icon">Blender</div>
-                    <div class="skill-icon">Power Query</div>
-                    <div class="skill-icon">API Integration</div>
-                    <div class="skill-icon">AR/VR Tools</div>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <h3>Data Analytic Methods</h3>
-                <ul class="skill-list">
-                    <li>Data Cleaning</li>
-                    <li>Exploratory Data Analysis (EDA)</li>
-                    <li>Data Transformation</li>
-                    <li>Statistical Analysis</li>
-                    <li>Segmentation & Clustering</li>
-                    <li>Data Storytelling</li>
-                    <li>BI Reporting</li>
-                    <li>Predictive Modeling</li>
-                    <li>Trend Forecasting</li>
-                    <li>Automation & Dashboarding</li>
-                </ul>
-            </div>
+      <div class="skill-card">
+        <h3>Data Analytic Tools</h3>
+        <div class="skill-icons">
+          <div class="skill-icon">Excel</div>
+          <div class="skill-icon">Google Sheets</div>
+          <div class="skill-icon">GitHub</div>
+          <div class="skill-icon">Jira</div>
+          <div class="skill-icon">Matplotlib</div>
+          <div class="skill-icon">Seaborn</div>
+          <div class="skill-icon">Blender</div>
+          <div class="skill-icon">Power Query</div>
+          <div class="skill-icon">API Integration</div>
+          <div class="skill-icon">AR/VR Tools</div>
         </div>
-    </section>
+      </div>
 
-    <!-- Background Section -->
-    <section class="education-section" id="background">
-        <div class="section-badge">EDUCATION | EXPERIENCE | BACKGROUND</div>
-        
-        <h2 class="section-title">EXPERIENCE</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="company">Brothers Interactive | Jaipur, Rajasthan</div>
-                    <h3>Business Analyst</h3>
-                    <div class="period">Oct 2025 — Present · Full-time · On-site</div>
-                    <p>Working as a Business Analyst responsible for connecting business goals with technical execution to support data-driven decision-making. Collaborate with stakeholders across sales, marketing, and product teams to define clear project objectives and translate them into actionable insights.</p>
-                    <p><strong>Key Responsibilities:</strong><br>
-                    • Requirement Gathering & Analysis<br>
-                    • Process Mapping & Documentation<br>
-                    • Data Analysis & Insights<br>
-                    • Stakeholder Communication<br>
-                    • Tools: Excel, SQL, Power BI, Tableau, Jira</p>
-                </div>
-            </div>
+      <div class="skill-card">
+        <h3>Data Analytic Methods</h3>
+        <ul class="skill-list">
+          <li>Data Cleaning</li>
+          <li>Exploratory Data Analysis (EDA)</li>
+          <li>Data Transformation</li>
+          <li>Statistical Analysis</li>
+          <li>Segmentation & Clustering</li>
+          <li>Data Storytelling</li>
+          <li>BI Reporting</li>
+          <li>Predictive Modeling</li>
+          <li>Trend Forecasting</li>
+          <li>Automation & Dashboarding</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="company">NextLeap | Remote, India</div>
-                    <h3>Data Analyst Fellowship Program</h3>
-                    <div class="period">April 2025 — August 2025 · Full-time · Remote</div>
-                    <p>Worked on real-world business case studies to apply analytical thinking and visualization skills. Hands-on with Excel, SQL, Tableau, and Python for data analysis, transformation, and dashboard development. Built interactive dashboards to track key performance metrics and sales trends.</p>
-                </div>
-            </div>
+  <!-- Background Section -->
+  <section class="education-section" id="background">
+    <div class="section-badge">EDUCATION | EXPERIENCE | BACKGROUND</div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="company">AICMUJ IF | Jaipur, India</div>
-                    <h3>AR/VR Executive</h3>
-                    <div class="period">March 2023 — April 2025 · Full-time · On-site</div>
-                    <p>Directed and managed AR/VR projects focused on immersive user experience and innovation. Conducted data analysis using Excel and SQL to track project milestones and performance metrics. Designed visual reports and dashboards to support management decisions.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="company">Mobzway Technology | Jaipur, India</div>
-                    <h3>Unity Developer</h3>
-                    <div class="period">July 2022 — February 2023 · Full-time · On-site</div>
-                    <p>Developed 2D and multiplayer casino games using Unity3D and C#. Optimized game performance through efficient coding and testing. Integrated Socket.io and web services for real-time multiplayer functionality.</p>
-                </div>
-            </div>
+    <h2 class="section-title">EXPERIENCE</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="company">Brothers Interactive | Jaipur, Rajasthan</div>
+          <h3>Business Analyst</h3>
+          <div class="period">Oct 2025 — Present · Full-time · On-site</div>
+          <p>Working as a Business Analyst responsible for connecting business goals with technical execution to support
+            data-driven decision-making. Collaborate with stakeholders across sales, marketing, and product teams to
+            define clear project objectives and translate them into actionable insights.</p>
+          <p><strong>Key Responsibilities:</strong><br>
+            • Requirement Gathering & Analysis<br>
+            • Process Mapping & Documentation<br>
+            • Data Analysis & Insights<br>
+            • Stakeholder Communication<br>
+            • Tools: Excel, SQL, Power BI, Tableau, Jira</p>
         </div>
-        
-        <h2 class="section-title">EDUCATION</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="company">R.E.C Mainpuri | AKTU Lucknow</div>
-                    <h3>Bachelor's in Mechanical Engineering</h3>
-                    <div class="period">2018 — 2022</div>
-                    <p>Completed B.Tech with 77.5% aggregate. Focused on mechanical systems, product design, and data-driven technologies.</p>
-                </div>
-            </div>
+      </div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="company">Senior School | State Board</div>
-                    <h3>Higher Secondary Education</h3>
-                    <div class="period">2017</div>
-                    <p>Scored 76.4%, emphasizing Physics, Chemistry, and Mathematics.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="company">High School | State Board</div>
-                    <h3>Secondary Education</h3>
-                    <div class="period">2015</div>
-                    <p>Scored 77.8%, with strong fundamentals in Science and Mathematics.</p>
-                </div>
-            </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="company">NextLeap | Remote, India</div>
+          <h3>Data Analyst Fellowship Program</h3>
+          <div class="period">April 2025 — August 2025 · Full-time · Remote</div>
+          <p>Worked on real-world business case studies to apply analytical thinking and visualization skills. Hands-on
+            with Excel, SQL, Tableau, and Python for data analysis, transformation, and dashboard development. Built
+            interactive dashboards to track key performance metrics and sales trends.</p>
         </div>
-    </section>
-    
+      </div>
 
-    <!-- Projects Section -->
-    <section class="projects-section" id="projects">
-        <div class="section-badge">MY PORTFOLIO</div>
-        
-        <!-- Project Panel (landscape: image left, content right) -->
-<div class="project-card" id="project-uber">
-  <div class="project-thumb" role="img" aria-label="Uber Pricing Optimization preview"
-       style="background-image: url('project 01.png');">
-    <!-- Optional: overlay tiles in the image area -->
-    <!-- <div class="thumb-tiles" aria-hidden="true">
-      <div class="tile">Dashboard View</div>
-      <div class="tile">Pricing Analysis</div>
-      <div class="tile">Heat Map</div>
-      <div class="tile">Trends Report</div>
-    </div> -->
-  </div>
-
-  <div class="project-content">
-    <div class="project-number">01</div>
-
-    <header class="project-header">
-      <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
-      
-    </header>
-
-    <div class="project-body">
-      <p class="project-description">
-        This project analyzes how customer service factors influence retention and satisfaction.
-        We mapped sentiment, CSAT distribution, SLA compliance, channel performance, and geography
-        to provide targeted recommendations that reduce churn and improve support outcomes.
-      </p>
-
-      
-    </div>
-
-    <div class="project-footer">
-      <a href="#" class="btn btn-outline" id="btn-full-report" target="_blank" rel="noopener">Full Report</a>
-      <a href="#" class="btn btn-primary" id="btn-view-dashboard" target="_blank" rel="noopener">View Dashboard</a>
-    </div>
-  </div>
-</div>
-
-        <!-- Project Panel (landscape: image left, content right) -->
-<div class="project-card" id="project-uber">
-  <div class="project-thumb" role="img" aria-label="Uber Pricing Optimization preview"
-       style="background-image: url('project 01.png');">
-    <!-- Optional: overlay tiles in the image area -->
-    <!-- <div class="thumb-tiles" aria-hidden="true">
-      <div class="tile">Dashboard View</div>
-      <div class="tile">Pricing Analysis</div>
-      <div class="tile">Heat Map</div>
-      <div class="tile">Trends Report</div>
-    </div> -->
-  </div>
-
-  <div class="project-content">
-    <div class="project-number">01</div>
-
-    <header class="project-header">
-      <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
-      
-    </header>
-
-    <div class="project-body">
-      <p class="project-description">
-        This project analyzes how customer service factors influence retention and satisfaction.
-        We mapped sentiment, CSAT distribution, SLA compliance, channel performance, and geography
-        to provide targeted recommendations that reduce churn and improve support outcomes.
-      </p>
-
-      
-    </div>
-
-    <div class="project-footer">
-      <a href="#" class="btn btn-outline" id="btn-full-report" target="_blank" rel="noopener">Full Report</a>
-      <a href="#" class="btn btn-primary" id="btn-view-dashboard" target="_blank" rel="noopener">View Dashboard</a>
-    </div>
-  </div>
-</div>
-
-        <!-- Project Panel (landscape: image left, content right) -->
-<div class="project-card" id="project-uber">
-  <div class="project-thumb" role="img" aria-label="Uber Pricing Optimization preview"
-       style="background-image: url('project 01.png');">
-    <!-- Optional: overlay tiles in the image area -->
-    <!-- <div class="thumb-tiles" aria-hidden="true">
-      <div class="tile">Dashboard View</div>
-      <div class="tile">Pricing Analysis</div>
-      <div class="tile">Heat Map</div>
-      <div class="tile">Trends Report</div>
-    </div> -->
-  </div>
-
-  <div class="project-content">
-    <div class="project-number">01</div>
-
-    <header class="project-header">
-      <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
-      
-    </header>
-
-    <div class="project-body">
-      <p class="project-description">
-        This project analyzes how customer service factors influence retention and satisfaction.
-        We mapped sentiment, CSAT distribution, SLA compliance, channel performance, and geography
-        to provide targeted recommendations that reduce churn and improve support outcomes.
-      </p>
-
-      
-    </div>
-
-    <div class="project-footer">
-      <a href="#" class="btn btn-outline" id="btn-full-report" target="_blank" rel="noopener">Full Report</a>
-      <a href="#" class="btn btn-primary" id="btn-view-dashboard" target="_blank" rel="noopener">View Dashboard</a>
-    </div>
-  </div>
-</div>
-
-        <!-- Project Panel (landscape: image left, content right) -->
-<div class="project-card" id="project-uber">
-  <div class="project-thumb" role="img" aria-label="Uber Pricing Optimization preview"
-       style="background-image: url('project 01.png');">
-    <!-- Optional: overlay tiles in the image area -->
-    <!-- <div class="thumb-tiles" aria-hidden="true">
-      <div class="tile">Dashboard View</div>
-      <div class="tile">Pricing Analysis</div>
-      <div class="tile">Heat Map</div>
-      <div class="tile">Trends Report</div>
-    </div> -->
-  </div>
-
-  <div class="project-content">
-    <div class="project-number">01</div>
-
-    <header class="project-header">
-      <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
-      
-    </header>
-
-    <div class="project-body">
-      <p class="project-description">
-        This project analyzes how customer service factors influence retention and satisfaction.
-        We mapped sentiment, CSAT distribution, SLA compliance, channel performance, and geography
-        to provide targeted recommendations that reduce churn and improve support outcomes.
-      </p>
-
-      
-    </div>
-
-    <div class="project-footer">
-      <a href="#" class="btn btn-outline" id="btn-full-report" target="_blank" rel="noopener">Full Report</a>
-      <a href="#" class="btn btn-primary" id="btn-view-dashboard" target="_blank" rel="noopener">View Dashboard</a>
-    </div>
-  </div>
-</div>
-
-        <!-- Project Panel (landscape: image left, content right) -->
-<div class="project-card" id="project-uber">
-  <div class="project-thumb" role="img" aria-label="Uber Pricing Optimization preview"
-       style="background-image: url('project 01.png');">
-    <!-- Optional: overlay tiles in the image area -->
-    <!-- <div class="thumb-tiles" aria-hidden="true">
-      <div class="tile">Dashboard View</div>
-      <div class="tile">Pricing Analysis</div>
-      <div class="tile">Heat Map</div>
-      <div class="tile">Trends Report</div>
-    </div> -->
-  </div>
-
-  <div class="project-content">
-    <div class="project-number">01</div>
-
-    <header class="project-header">
-      <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
-      
-    </header>
-
-    <div class="project-body">
-      <p class="project-description">
-        This project analyzes how customer service factors influence retention and satisfaction.
-        We mapped sentiment, CSAT distribution, SLA compliance, channel performance, and geography
-        to provide targeted recommendations that reduce churn and improve support outcomes.
-      </p>
-
-      
-    </div>
-
-    <div class="project-footer">
-      <a href="#" class="btn btn-outline" id="btn-full-report" target="_blank" rel="noopener">Full Report</a>
-      <a href="#" class="btn btn-primary" id="btn-view-dashboard" target="_blank" rel="noopener">View Dashboard</a>
-    </div>
-  </div>
-</div>
-
-        <!-- Project Panel (landscape: image left, content right) -->
-<div class="project-card" id="project-uber">
-  <div class="project-thumb" role="img" aria-label="Uber Pricing Optimization preview"
-       style="background-image: url('project 01.png');">
-    <!-- Optional: overlay tiles in the image area -->
-    <!-- <div class="thumb-tiles" aria-hidden="true">
-      <div class="tile">Dashboard View</div>
-      <div class="tile">Pricing Analysis</div>
-      <div class="tile">Heat Map</div>
-      <div class="tile">Trends Report</div>
-    </div> -->
-  </div>
-
-  <div class="project-content">
-    <div class="project-number">01</div>
-
-    <header class="project-header">
-      <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
-      
-    </header>
-
-    <div class="project-body">
-      <p class="project-description">
-        This project analyzes how customer service factors influence retention and satisfaction.
-        We mapped sentiment, CSAT distribution, SLA compliance, channel performance, and geography
-        to provide targeted recommendations that reduce churn and improve support outcomes.
-      </p>
-
-      
-    </div>
-
-    <div class="project-footer">
-      <a href="#" class="btn btn-outline" id="btn-full-report" target="_blank" rel="noopener">Full Report</a>
-      <a href="#" class="btn btn-primary" id="btn-view-dashboard" target="_blank" rel="noopener">View Dashboard</a>
-    </div>
-  </div>
-</div>
-
-        <!-- Project Panel (landscape: image left, content right) -->
-<div class="project-card" id="project-uber">
-  <div class="project-thumb" role="img" aria-label="Uber Pricing Optimization preview"
-       style="background-image: url('project 01.png');">
-    <!-- Optional: overlay tiles in the image area -->
-    <!-- <div class="thumb-tiles" aria-hidden="true">
-      <div class="tile">Dashboard View</div>
-      <div class="tile">Pricing Analysis</div>
-      <div class="tile">Heat Map</div>
-      <div class="tile">Trends Report</div>
-    </div> -->
-  </div>
-
-  <div class="project-content">
-    <div class="project-number">01</div>
-
-    <header class="project-header">
-      <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
-      
-    </header>
-
-    <div class="project-body">
-      <p class="project-description">
-        This project analyzes how customer service factors influence retention and satisfaction.
-        We mapped sentiment, CSAT distribution, SLA compliance, channel performance, and geography
-        to provide targeted recommendations that reduce churn and improve support outcomes.
-      </p>
-
-      
-    </div>
-
-    <div class="project-footer">
-      <a href="#" class="btn btn-outline" id="btn-full-report" target="_blank" rel="noopener">Full Report</a>
-      <a href="#" class="btn btn-primary" id="btn-view-dashboard" target="_blank" rel="noopener">View Dashboard</a>
-    </div>
-  </div>
-</div>
-
-
-    </section>
-
-<!-- ========== Certificates Grid (vertical card) ========== -->
-<section id="achievements" class="achievements-section">
-  <div class="container">
-    <h2 class="section-title">Certificates & Achievements</h2>
-
-    <div class="cert-grid">
-      <!-- Certificate card 1 -->
-      <article class="cert-card">
-        <button class="cert-thumb" aria-label="Open certificate - SQL MySQL" data-large="SQL Udemy Certificate.jpg">
-          <img src="SQL Udemy Certificate.jpg" alt="SQL MySQL Certificate thumbnail" loading="lazy">
-        </button>
-        <h3 class="cert-name">SQL - MySQL for Data Analytics</h3>
-        <p class="cert-org">Udemy • Completed 2024</p>
-        <div class="cert-actions">
-          <button class="btn view-cert" type="button" aria-haspopup="dialog">View</button>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="company">AICMUJ IF | Jaipur, India</div>
+          <h3>AR/VR Executive</h3>
+          <div class="period">March 2023 — April 2025 · Full-time · On-site</div>
+          <p>Directed and managed AR/VR projects focused on immersive user experience and innovation. Conducted data
+            analysis using Excel and SQL to track project milestones and performance metrics. Designed visual reports
+            and dashboards to support management decisions.</p>
         </div>
-      </article>
+      </div>
 
-      <!-- Certificate card 2 -->
-      <article class="cert-card">
-        <button class="cert-thumb" aria-label="Open certificate - Data Analytics Fellowship" data-large="SQL Udemy Certificate.jpg">
-          <img src="SQL Udemy Certificate.jpg" alt="Data Analytics Fellowship certificate thumbnail" loading="lazy">
-        </button>
-        <h3 class="cert-name">Data Analytics Fellowship</h3>
-        <p class="cert-org">NextLeap • 2025</p>
-        <div class="cert-actions">
-          <button class="btn view-cert" type="button" aria-haspopup="dialog">View</button>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="company">Mobzway Technology | Jaipur, India</div>
+          <h3>Unity Developer</h3>
+          <div class="period">July 2022 — February 2023 · Full-time · On-site</div>
+          <p>Developed 2D and multiplayer casino games using Unity3D and C#. Optimized game performance through
+            efficient coding and testing. Integrated Socket.io and web services for real-time multiplayer functionality.
+          </p>
         </div>
-      </article>
-      <!-- Certificate card 2 -->
-      <article class="cert-card">
-        <button class="cert-thumb" aria-label="Open certificate - Data Analytics Fellowship" data-large="SQL Udemy Certificate.jpg">
-          <img src="SQL Udemy Certificate.jpg" alt="Data Analytics Fellowship certificate thumbnail" loading="lazy">
-        </button>
-        <h3 class="cert-name">Data Analytics Fellowship</h3>
-        <p class="cert-org">NextLeap • 2025</p>
-        <div class="cert-actions">
-          <button class="btn view-cert" type="button" aria-haspopup="dialog">View</button>
-        </div>
-      </article>
+      </div>
+    </div>
 
-      <!-- Certificate card 2 -->
-      <article class="cert-card">
-        <button class="cert-thumb" aria-label="Open certificate - Data Analytics Fellowship" data-large="SQL Udemy Certificate.jpg">
-          <img src="SQL Udemy Certificate.jpg" alt="Data Analytics Fellowship certificate thumbnail" loading="lazy">
-        </button>
-        <h3 class="cert-name">Data Analytics Fellowship</h3>
-        <p class="cert-org">NextLeap • 2025</p>
-        <div class="cert-actions">
-          <button class="btn view-cert" type="button" aria-haspopup="dialog">View</button>
+    <h2 class="section-title">EDUCATION</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="company">R.E.C Mainpuri | AKTU Lucknow</div>
+          <h3>Bachelor's in Mechanical Engineering</h3>
+          <div class="period">2018 — 2022</div>
+          <p>Completed B.Tech with 77.5% aggregate. Focused on mechanical systems, product design, and data-driven
+            technologies.</p>
         </div>
-      </article>
-      
+      </div>
 
-      <!-- Add more cert-card blocks here (copy/paste and change image/text) -->
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="company">Senior School | State Board</div>
+          <h3>Higher Secondary Education</h3>
+          <div class="period">2017</div>
+          <p>Scored 76.4%, emphasizing Physics, Chemistry, and Mathematics.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="company">High School | State Board</div>
+          <h3>Secondary Education</h3>
+          <div class="period">2015</div>
+          <p>Scored 77.8%, with strong fundamentals in Science and Mathematics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Projects Section -->
+  <section class="projects-section" id="projects">
+    <div class="section-badge">MY PORTFOLIO</div>
+
+    <!-- Project Panel (landscape: image left, content right) -->
+    <div class="project-card" id="project-uber">
+      <div class="project-thumb" role="img" aria-label="Customer Service Analytics preview"
+        style="background-image: url('project 01.png');">
+      </div>
+
+      <div class="project-content">
+        <div class="project-number">01</div>
+
+        <header class="project-header">
+          <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
+        </header>
+
+        <div class="project-body">
+          <p class="project-description">
+            This project analyzes Flipkart’s customer service interactions to understand how sentiment, response time,
+            call duration, and issue resolution quality shape overall satisfaction.
+            By evaluating these touchpoints across thousands of support cases, the study uncovers operational
+            inefficiencies and key drivers of customer retention.
+            The findings highlight where support experiences break down and how data-driven improvements can enhance
+            loyalty and trust.
+          </p>
+        </div>
+
+        <!-- Updated buttons with dynamic functionality -->
+        <div class="project-footer">
+          <a class="btn btn-outline project-report"
+            data-report="https://github.com/TiwariYogi2001/Data-analysis-dashboard">
+            Full Report
+          </a>
+
+          <a class="btn btn-primary project-dashboard" data-dashboard="Flipkart Dashboard Project 01.jpg">
+            View Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Panel (landscape: image left, content right) -->
+    <div class="project-card" id="project-uber">
+      <div class="project-thumb" role="img" aria-label="Customer Service Analytics preview"
+        style="background-image: url('project 02.png');">
+      </div>
+
+      <div class="project-content">
+        <div class="project-number">02</div>
+
+        <header class="project-header">
+          <h3 class="project-title">Customer Service Analytics Of Flipkart</h3>
+        </header>
+
+        <div class="project-body">
+          <p class="project-description">
+            This project analyzes Flipkart’s customer service interactions to understand how sentiment, response time,
+            call duration, and issue resolution quality shape overall satisfaction.
+            By evaluating these touchpoints across thousands of support cases, the study uncovers operational
+            inefficiencies and key drivers of customer retention.
+            The findings highlight where support experiences break down and how data-driven improvements can enhance
+            loyalty and trust.
+          </p>
+        </div>
+
+        <!-- Updated buttons with dynamic functionality -->
+        <div class="project-footer">
+          <a class="btn btn-outline project-report"
+            data-report="https://github.com/TiwariYogi2001/Data-analysis-dashboard">
+            Full Report
+          </a>
+
+          <a class="btn btn-primary project-dashboard" data-dashboard="Flipkart Dashboard Project 01.jpg">
+            View Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Certificates Grid (vertical card) ========== -->
+  <section id="achievements" class="achievements-section">
+    <div class="container">
+      <h2 class="section-title">Certificates & Achievements</h2>
+
+      <div class="cert-grid">
+        <!-- Certificate card 1 -->
+        <article class="cert-card">
+          <button class="cert-thumb" aria-label="Open certificate - SQL MySQL" data-large="SQL Udemy Certificate.jpg">
+            <img src="SQL Udemy Certificate.jpg" alt="SQL MySQL Certificate thumbnail" loading="lazy">
+          </button>
+          <h3 class="cert-name">SQL - MySQL for Data Analytics</h3>
+          <p class="cert-org">Udemy • Completed 2024</p>
+          <div class="cert-actions">
+            <button class="btn view-cert" type="button" aria-haspopup="dialog">View</button>
+          </div>
+        </article>
+
+        <!-- Certificate card 2 -->
+        <article class="cert-card">
+          <button class="cert-thumb" aria-label="Open certificate - Data Analytics Fellowship"
+            data-large="SQL Udemy Certificate.jpg">
+            <img src="SQL Udemy Certificate.jpg" alt="Data Analytics Fellowship certificate thumbnail" loading="lazy">
+          </button>
+          <h3 class="cert-name">Data Analytics Fellowship</h3>
+          <p class="cert-org">NextLeap • 2025</p>
+          <div class="cert-actions">
+            <button class="btn view-cert" type="button" aria-haspopup="dialog">View</button>
+          </div>
+        </article>
+        <!-- Certificate card 2 -->
+        <article class="cert-card">
+          <button class="cert-thumb" aria-label="Open certificate - Data Analytics Fellowship"
+            data-large="SQL Udemy Certificate.jpg">
+            <img src="SQL Udemy Certificate.jpg" alt="Data Analytics Fellowship certificate thumbnail" loading="lazy">
+          </button>
+          <h3 class="cert-name">Data Analytics Fellowship</h3>
+          <p class="cert-org">NextLeap • 2025</p>
+          <div class="cert-actions">
+            <button class="btn view-cert" type="button" aria-haspopup="dialog">View</button>
+          </div>
+        </article>
+
+        <!-- Certificate card 2 -->
+        <article class="cert-card">
+          <button class="cert-thumb" aria-label="Open certificate - Data Analytics Fellowship"
+            data-large="SQL Udemy Certificate.jpg">
+            <img src="SQL Udemy Certificate.jpg" alt="Data Analytics Fellowship certificate thumbnail" loading="lazy">
+          </button>
+          <h3 class="cert-name">Data Analytics Fellowship</h3>
+          <p class="cert-org">NextLeap • 2025</p>
+          <div class="cert-actions">
+            <button class="btn view-cert" type="button" aria-haspopup="dialog">View</button>
+          </div>
+        </article>
+
+
+        <!-- Add more cert-card blocks here (copy/paste and change image/text) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal (place once on the page) -->
+  <div id="certificate-modal" class="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="cert-modal-overlay" data-close></div>
+    <div class="cert-modal-content" role="document" aria-label="Certificate preview">
+      <button class="cert-modal-close" aria-label="Close certificate">&times;</button>
+      <img class="cert-modal-img" src="" alt="Certificate large view">
     </div>
   </div>
-</section>
-
-<!-- Modal (place once on the page) -->
-<div id="certificate-modal" class="cert-modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="cert-modal-overlay" data-close></div>
-  <div class="cert-modal-content" role="document" aria-label="Certificate preview">
-    <button class="cert-modal-close" aria-label="Close certificate">&times;</button>
-    <img class="cert-modal-img" src="" alt="Certificate large view">
-  </div>
-</div>
 
 
 
-            <!-- <div class="achievement-card">
+  <!-- <div class="achievement-card">
                 <div class="achievement-icon">⚡</div>
                 <h3>Power BI Expert</h3>
                 <p>Advanced proficiency in Power BI dashboard development, creating interactive visualizations for business intelligence.</p>
@@ -706,97 +553,114 @@
                 <h3>Innovation Award</h3>
                 <p>Recognized for innovative approaches in data visualization and process automation that improved operational efficiency by 40%.</p>
             </div> -->
-        </div>
-    </section>
+  </div>
+  </section>
 
-   <!-- BOTTOM HORROR EFFECTS (bigger + realistic) -->
-<div id="bottom-horror-pro">
-  <div class="fog-layer fog-back"></div>
-  <div class="fog-layer fog-mid"></div>
-  <div class="fog-layer fog-front"></div>
+  <!-- Project Dashboard Modal (place once, near end of body) -->
+  <div id="project-modal" class="project-modal" aria-hidden="true" role="dialog" aria-label="Project dashboard preview">
+    <div class="project-modal-overlay" data-close></div>
 
-  <!-- walker A (slower, larger) -->
-  <div class="tiny-zombie walker a">
-    <div class="tz-head"></div>
-    <div class="tz-neck"></div>
-    <div class="tz-body"></div>
-    <div class="tz-arm left"></div>
-    <div class="tz-arm right"></div>
-    <div class="tz-leg left"></div>
-    <div class="tz-leg right"></div>
-    <div class="tz-shadow"></div>
+    <div class="project-modal-wrap" role="document">
+      <button class="project-modal-close" aria-label="Close preview">✕</button>
+
+      <!-- container that will hold either an <img> or an <iframe> -->
+      <div class="project-modal-body">
+        <!-- inserted dynamically -->
+      </div>
+    </div>
   </div>
 
-  <!-- walker B (faster, smaller, delayed start) -->
-  <div class="tiny-zombie walker b">
-    <div class="tz-head"></div>
-    <div class="tz-neck"></div>
-    <div class="tz-body"></div>
-    <div class="tz-arm left"></div>
-    <div class="tz-arm right"></div>
-    <div class="tz-leg left"></div>
-    <div class="tz-leg right"></div>
-    <div class="tz-shadow"></div>
+
+
+  <!-- BOTTOM HORROR EFFECTS (bigger + realistic) -->
+  <div id="bottom-horror-pro">
+    <div class="fog-layer fog-back"></div>
+    <div class="fog-layer fog-mid"></div>
+    <div class="fog-layer fog-front"></div>
+
+    <!-- walker A (slower, larger) -->
+    <div class="tiny-zombie walker a">
+      <div class="tz-head"></div>
+      <div class="tz-neck"></div>
+      <div class="tz-body"></div>
+      <div class="tz-arm left"></div>
+      <div class="tz-arm right"></div>
+      <div class="tz-leg left"></div>
+      <div class="tz-leg right"></div>
+      <div class="tz-shadow"></div>
+    </div>
+
+    <!-- walker B (faster, smaller, delayed start) -->
+    <div class="tiny-zombie walker b">
+      <div class="tz-head"></div>
+      <div class="tz-neck"></div>
+      <div class="tz-body"></div>
+      <div class="tz-arm left"></div>
+      <div class="tz-arm right"></div>
+      <div class="tz-leg left"></div>
+      <div class="tz-leg right"></div>
+      <div class="tz-shadow"></div>
+    </div>
+
+    <!-- optional subtle arm peeks -->
+    <div class="ghost-arm left-arm"></div>
+    <div class="ghost-arm right-arm"></div>
   </div>
 
-  <!-- optional subtle arm peeks -->
-  <div class="ghost-arm left-arm"></div>
-  <div class="ghost-arm right-arm"></div>
-</div>
 
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="section-badge">GET IN TOUCH</div>
+    <h2 class="section-title">CONTACT ME</h2>
 
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <div class="section-badge">GET IN TOUCH</div>
-        <h2 class="section-title">CONTACT ME</h2>
-        
-        <div class="contact-container">
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
-                </div>
-
-                <button id="sendButton" type="submit" class="submit-btn">Send Message</button>
-<p id="contactStatus" class="contact-status"></p>
-
-            </form>
-
-           
+    <div class="contact-container">
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p style="color: #888; margin-bottom: 10px;">Back to Top | <a href="#home">Home</a></p>
-        <p style="color: #666; font-size: 14px;">© 2024 Yogesh Tiwari. All rights reserved.</p>
-    </footer>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+        </div>
 
-    <!-- EmailJS SDK & init (paste once before </body>) -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  (function(){
-    // Initialize EmailJS with your public key
-    emailjs.init('gQ0EXxX2i41Id_lLn');
-  })();
-</script>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+        </div>
+
+        <button id="sendButton" type="submit" class="submit-btn">Send Message</button>
+        <p id="contactStatus" class="contact-status"></p>
+
+      </form>
+
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p style="color: #888; margin-bottom: 10px;">Back to Top | <a href="#home">Home</a></p>
+    <p style="color: #666; font-size: 14px;">© 2024 Yogesh Tiwari. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- EmailJS SDK & init (paste once before </body>) -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      // Initialize EmailJS with your public key
+      emailjs.init('gQ0EXxX2i41Id_lLn');
+    })();
+  </script>
 
 </body>
+
 </html>
