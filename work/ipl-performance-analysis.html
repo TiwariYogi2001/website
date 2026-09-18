@@ -12,14 +12,14 @@
   <meta property="og:site_name" content="Yogesh Tiwari">
   <meta property="og:title" content="IPL performance — Yogesh Tiwari">
   <meta property="og:description" content="Win counts, run rates and bowling strength by team, straight from match data. A case study by Yogesh Tiwari.">
-  <meta property="og:image" content="https://tiwariyogi2001.github.io/website/assets/img/og.png">
+  <meta property="og:image" content="https://tiwariyogi2001.github.io/website/assets/img/projects/ipl.webp">
   <meta property="og:url" content="https://tiwariyogi2001.github.io/website/work/ipl-performance-analysis.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css?v=81607666">
+  <link rel="stylesheet" href="../assets/css/style.css?v=45d7ab0d">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -58,15 +58,9 @@
 
     <section class="section section-tight">
       <div class="wrap">
-        <pre class="code code-hero"><code class="sql">-- Run rate by team
-SELECT team,
-       SUM(runs_scored)  AS runs,
-       SUM(overs_faced)  AS overs,
-       ROUND(SUM(runs_scored)::numeric
-             / SUM(overs_faced), 2) AS run_rate
-FROM ipl
-GROUP BY team
-ORDER BY run_rate DESC;</code></pre>
+        <button class="case-hero-img" data-full="../assets/img/projects/ipl.webp" aria-label="Enlarge the dashboard">
+          <img src="../assets/img/projects/ipl.webp" alt="IPL performance dashboard" width="1280" height="720">
+        </button><p class="visual-note muted">Summary view built from the project's results.</p>
         <dl class="case-figures"><div><dd class="mono">950</dd><dt>team innings</dt></div><div><dd class="mono">15</dd><dt>seasons, 2008–2022</dt></div><div><dd class="mono">131</dd><dt>Mumbai Indians wins</dt></div><div><dd class="mono">653</dd><dt>RCB wickets taken</dt></div></dl>
       </div>
     </section>
@@ -84,7 +78,15 @@ ORDER BY run_rate DESC;</code></pre>
           <p>Team-level match records: team and opponent, date, venue, season, runs scored and conceded, wickets lost and taken, overs faced, result and player of the match.</p>
           <h2 id="approach">Approach</h2>
           <ol class="steps"><li><span class="step-n mono">01</span><div><h3>Model</h3><p>Designed the table schema with a match-level primary key in PostgreSQL.</p></div></li><li><span class="step-n mono">02</span><div><h3>Results</h3><p>Win and loss counts, and average runs in winning versus losing matches.</p></div></li><li><span class="step-n mono">03</span><div><h3>Efficiency</h3><p>Run rate by team, low-wicket innings, and teams with 200+ wickets taken.</p></div></li><li><span class="step-n mono">04</span><div><h3>Visualise</h3><p>Explored consistency and season trends further in Python and Tableau.</p></div></li></ol>
-          
+          <pre class="code"><code class="sql">-- Run rate by team
+SELECT team,
+       SUM(runs_scored)  AS runs,
+       SUM(overs_faced)  AS overs,
+       ROUND(SUM(runs_scored)::numeric
+             / SUM(overs_faced), 2) AS run_rate
+FROM ipl
+GROUP BY team
+ORDER BY run_rate DESC;</code></pre>
           <h2 id="findings">What I found</h2>
           <ul class="bullets"><li><strong>Mumbai Indians win the most matches (131)</strong>, ahead of Chennai Super Kings (121) and Kolkata Knight Riders (114).</li><li>Royal Challengers Bangalore take the most wickets (653) — yet sit fourth on wins, so bowling volume alone doesn't win titles.</li><li>Winners average only about 4 more runs than losers (143.5 vs 139.7) — the total on its own rarely decides a match.</li><li>Lucknow Super Giants top the run-rate table, but on just 97 overs; among long-running franchises, Rajasthan Royals lead. <strong>Sample size matters</strong> before ranking anyone.</li></ul>
           

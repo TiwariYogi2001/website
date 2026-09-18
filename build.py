@@ -62,7 +62,7 @@ PROJECTS = [
         "role": "BD &amp; Outreach Specialist, Brothers Interactive",
         "when": "Oct 2025 – present",
         "tools": ["Python", "Web scraping", "Pandas", "Excel", "Lead scoring"],
-        "thumb": {"type": "funnel"},
+        "thumb": {"type": "img", "src": "assets/img/projects/steam.webp", "w": 1280, "h": 720, "generated": True},
         "figures": [("30%+", "reply rate (industry 5–10%)"), ("500+", "Steam titles analysed"),
                     ("100+", "studios &amp; publishers contacted"), ("1", "signed partnership")],
         "question": "Brothers Interactive sells outsourced art and development to game studios. Cold outreach in this "
@@ -244,7 +244,7 @@ PROJECTS = [
         "role": "SQL case study",
         "when": "2025",
         "tools": ["MySQL", "JOINs", "Subqueries", "Window functions"],
-        "thumb": {"type": "code", "lines": ["SELECT name, revenue", "FROM ( SELECT category, name,", "  RANK() OVER (PARTITION BY", "    category ORDER BY revenue"]},
+        "thumb": {"type": "img", "src": "assets/img/projects/pizza.webp", "w": 1280, "h": 720, "generated": True},
         "figures": [("$817.9K", "revenue in 2015"), ("21,350", "orders"), ("49,574", "pizzas sold"), ("12–1 PM", "busiest hour")],
         "question": "A pizza shop wants to know <strong>what sells, when, and what earns the most</strong> — so it can "
                     "plan its menu, staffing and inventory.",
@@ -296,7 +296,7 @@ WHERE rn <= 3;""",
         "role": "SQL case study",
         "when": "2025",
         "tools": ["PostgreSQL", "CTEs", "Aggregations", "Excel"],
-        "thumb": {"type": "code", "lines": ["SELECT host_name,", "  COUNT(*) AS listings,", "  AVG(review_scores_rating)", "HAVING COUNT(*) >= 2"]},
+        "thumb": {"type": "img", "src": "assets/img/projects/airbnb.webp", "w": 1280, "h": 720, "generated": True},
         "figures": [("419", "listings"), ("190", "hosts"), ("21", "property types"), ("29", "hosts with 4+ listings")],
         "question": "<strong>What separates high-performing Airbnb listings and hosts from the rest</strong> — and what "
                     "should the platform do about the gap?",
@@ -344,7 +344,7 @@ ORDER BY avg_rating;""",
         "role": "SQL case study",
         "when": "2025",
         "tools": ["PostgreSQL", "Python", "Tableau"],
-        "thumb": {"type": "code", "lines": ["SELECT team,", "  ROUND(SUM(runs_scored)", "    / SUM(overs_faced), 2)", "  AS run_rate FROM ipl"]},
+        "thumb": {"type": "img", "src": "assets/img/projects/ipl.webp", "w": 1280, "h": 720, "generated": True},
         "figures": [("950", "team innings"), ("15", "seasons, 2008–2022"), ("131", "Mumbai Indians wins"), ("653", "RCB wickets taken")],
         "question": "<strong>Which IPL teams are most efficient with the bat and the ball</strong>, and how do scoring "
                     "patterns relate to results?",
@@ -385,7 +385,7 @@ ORDER BY run_rate DESC;""",
         "role": "SQL case study",
         "when": "2025",
         "tools": ["PostgreSQL", "JOINs", "CTEs"],
-        "thumb": {"type": "code", "lines": ["SELECT billing_city,", "  SUM(total) AS invoice_total", "FROM invoice", "ORDER BY invoice_total DESC"]},
+        "thumb": {"type": "img", "src": "assets/img/projects/music.webp", "w": 1280, "h": 720, "generated": True},
         "figures": [("$4,709", "revenue analysed"), ("614", "invoices"), ("59", "customers"), ("24", "countries")],
         "question": "A digital music store wants to <strong>reward its best customers and plan a promotional music "
                     "festival</strong> in the right city.",
@@ -420,7 +420,7 @@ LIMIT 1;""",
         "role": "AR/VR Executive, AICMUJ Innovation Foundation",
         "when": "2023 – 2025",
         "tools": ["Unity", "C#", "VR", "Analytics"],
-        "thumb": {"type": "glyph", "label": "VR"},
+        "thumb": {"type": "img", "src": "assets/img/projects/schoolvr.webp", "w": 1280, "h": 720, "generated": True},
         "figures": [("5+", "startup partners supported"), ("3+", "developers mentored")],
         "question": "Students remember what they experience. <strong>Could VR make science, history and geography "
                     "lessons stick — and could teachers see whether it works?</strong>",
@@ -445,7 +445,7 @@ LIMIT 1;""",
         "role": "Unity Developer, Mobzway Technologies",
         "when": "2022 – 2023",
         "tools": ["Unity3D", "C#", "Socket.io", "QA"],
-        "thumb": {"type": "glyph", "label": "♠"},
+        "thumb": {"type": "img", "src": "assets/img/projects/callbreak.webp", "w": 1280, "h": 720, "generated": True},
         "figures": [("4", "players per table"), ("Real-time", "networking")],
         "question": "Callbreak is a trick-taking card game popular in South Asia. <strong>Make it play smoothly online, "
                     "in real time, on mobile.</strong>",
@@ -1070,9 +1070,11 @@ def case(i):
     next_p = PROJECTS[(i + 1) % len(PROJECTS)]
     t = p["thumb"]
     if t["type"] == "img":
+        cap = ("<p class=\"visual-note muted\">Summary view built from the project's results.</p>"
+               if t.get("generated") else "")
         visual = f"""        <button class="case-hero-img" data-full="{r}{t['src']}" aria-label="Enlarge the dashboard">
           <img src="{r}{t['src']}" alt="{p['short']} dashboard" width="{t['w']}" height="{t['h']}">
-        </button>"""
+        </button>{cap}"""
     elif p.get("code"):
         visual = f"""        <pre class="code code-hero"><code class="sql">{escape(p['code'])}</code></pre>"""
     elif t["type"] == "funnel":

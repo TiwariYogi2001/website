@@ -12,14 +12,14 @@
   <meta property="og:site_name" content="Yogesh Tiwari">
   <meta property="og:title" content="Airbnb SQL — Yogesh Tiwari">
   <meta property="og:description" content="Six analysis areas across listings, calendar and reviews, each ending in a recommendation. A case study by Yogesh Tiwari.">
-  <meta property="og:image" content="https://tiwariyogi2001.github.io/website/assets/img/og.png">
+  <meta property="og:image" content="https://tiwariyogi2001.github.io/website/assets/img/projects/airbnb.webp">
   <meta property="og:url" content="https://tiwariyogi2001.github.io/website/work/airbnb-sql-analysis.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css?v=81607666">
+  <link rel="stylesheet" href="../assets/css/style.css?v=45d7ab0d">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -58,16 +58,9 @@
 
     <section class="section section-tight">
       <div class="wrap">
-        <pre class="code code-hero"><code class="sql">-- Hosts with 2+ listings but a rating below 4.0
-SELECT host_name,
-       COUNT(*)                  AS total_listings,
-       AVG(review_scores_rating) AS avg_rating
-FROM listings
-WHERE review_scores_rating IS NOT NULL
-GROUP BY host_name
-HAVING COUNT(*) &gt;= 2
-   AND AVG(review_scores_rating) &lt; 4.0
-ORDER BY avg_rating;</code></pre>
+        <button class="case-hero-img" data-full="../assets/img/projects/airbnb.webp" aria-label="Enlarge the dashboard">
+          <img src="../assets/img/projects/airbnb.webp" alt="Airbnb SQL dashboard" width="1280" height="720">
+        </button><p class="visual-note muted">Summary view built from the project's results.</p>
         <dl class="case-figures"><div><dd class="mono">419</dd><dt>listings</dt></div><div><dd class="mono">190</dd><dt>hosts</dt></div><div><dd class="mono">21</dd><dt>property types</dt></div><div><dd class="mono">29</dd><dt>hosts with 4+ listings</dt></div></dl>
       </div>
     </section>
@@ -85,7 +78,16 @@ ORDER BY avg_rating;</code></pre>
           <p>Listings (host, property type, price, ratings), calendar (date-level availability and price) and reviews (reviewer and comments).</p>
           <h2 id="approach">Approach</h2>
           <ol class="steps"><li><span class="step-n mono">01</span><div><h3>Property diversity</h3><p>Listing counts and the top 5 property types.</p></div></li><li><span class="step-n mono">02</span><div><h3>Guest ratings</h3><p>Average scores, top 10 listings, and how many fall below 4.0.</p></div></li><li><span class="step-n mono">03</span><div><h3>Host engagement</h3><p>Multi-listing hosts, average score per host, and struggling hosts with 2+ listings.</p></div></li><li><span class="step-n mono">04</span><div><h3>Booking trends</h3><p>Occupancy rate per listing for January 2024, top performers and zero-booking listings.</p></div></li><li><span class="step-n mono">05</span><div><h3>Pricing</h3><p>Average nightly price by property type and budget-friendly categories under $150.</p></div></li><li><span class="step-n mono">06</span><div><h3>Reviews</h3><p>Most active reviewers, reviews per listing, and properties with no 2023 reviews.</p></div></li></ol>
-          
+          <pre class="code"><code class="sql">-- Hosts with 2+ listings but a rating below 4.0
+SELECT host_name,
+       COUNT(*)                  AS total_listings,
+       AVG(review_scores_rating) AS avg_rating
+FROM listings
+WHERE review_scores_rating IS NOT NULL
+GROUP BY host_name
+HAVING COUNT(*) &gt;= 2
+   AND AVG(review_scores_rating) &lt; 4.0
+ORDER BY avg_rating;</code></pre>
           <h2 id="findings">What I found</h2>
           <ul class="bullets"><li>The market (centred on Albany, NY) is dominated by <strong>entire rental units — 203 of 419 listings</strong>; together with entire homes, whole-place stays are 73% of supply.</li><li><strong>29 hosts run more than three listings</strong>, and the largest single host has 27 — their ratings move the whole market.</li><li>Quality is high: only 10 of 359 rated listings score below 4.0, and 55% of listings belong to Superhosts.</li><li>Zero-booking listings are identifiable from the calendar and are candidates for pricing and content fixes.</li></ul>
           <h2>What I'd recommend</h2>

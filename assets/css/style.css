@@ -435,6 +435,7 @@ code { font-family: var(--mono); font-size: .9em; }
   background: var(--surface); cursor: zoom-in; box-shadow: var(--shadow);
 }
 .case-hero-img img { width: 100%; }
+.visual-note { font-size: 13px; text-align: center; margin-top: 10px; }
 .code-hero { max-width: 760px; margin: 0 auto; font-size: 14px; padding: 24px 28px; }
 .glyph-hero {
   display: grid; place-items: center; height: clamp(180px, 30vw, 300px); border-radius: var(--radius);
