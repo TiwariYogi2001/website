@@ -325,6 +325,7 @@ button { font: inherit; color: inherit; }
   .hero-grid, .case, .exp-grid, .contact-grid { grid-template-columns: 1fr; }
   .case:nth-of-type(even) .case-shot { order: 0; }
   .sticky-head { position: static; }
+  .career-chart { max-width: 560px; }
   .cert-grid { grid-template-columns: repeat(2, 1fr); }
   .kpis { grid-template-columns: repeat(2, 1fr); }
   .kpis > div:nth-child(3) { padding-left: 0; border-left: 0; }
