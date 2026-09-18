@@ -750,7 +750,8 @@ def home():
     steam = PROJECTS[0]
     body = f"""    <section class="hero" id="top">
       <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="wrap">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
         <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Open to remote Gaming BD, market research &amp; analyst roles</p>
         <h1 class="display">I help game studios find the right partners — <em>with data.</em></h1>
         <div class="hero-row">
@@ -764,10 +765,25 @@ def home():
             <a class="btn btn-ghost btn-lg" href="{RESUME}" download>Download résumé</a>
           </div>
         </div>
+        </div>
+
+        <figure class="board-card board-gauge hero-gauge" aria-labelledby="gauge-cap">
+          <figcaption id="gauge-cap" class="chart-title"><span>Outreach reply rate</span><span class="mono muted">vs industry</span></figcaption>
+          <div class="gauge" role="img" aria-label="My outreach reply rate is over 30 percent; the industry average is 5 to 10 percent.">
+            <svg viewBox="0 0 140 140">
+              <circle class="gauge-track" cx="70" cy="70" r="58"/>
+              <circle class="gauge-ind" cx="70" cy="70" r="58" pathLength="100" stroke-dasharray="7.5 92.5"/>
+              <circle class="gauge-me" cx="70" cy="70" r="58" pathLength="100" stroke-dasharray="30 70"/>
+            </svg>
+            <div class="gauge-center"><b class="mono" data-count="30" data-suffix="%+">30%+</b><span>mine</span></div>
+          </div>
+          <p class="gauge-foot"><span class="swatch swatch-ind"></span>Industry 5–10% <span class="swatch swatch-me"></span>Me 30%+</p>
+          <p class="gauge-note">3–5× the industry average — because every message starts from research into the studio's own games.</p>
+        </figure>
       </div>
 
       <div class="wrap">
-        <div class="board">
+        <div class="board board-2">
           <figure class="board-card board-funnel" aria-labelledby="funnel-cap">
             <figcaption id="funnel-cap" class="chart-title"><span>Outreach funnel</span><span class="mono muted">Brothers Interactive · Oct 2025 → now</span></figcaption>
             <div class="viz-bars" role="img" aria-label="Funnel: 500+ Steam titles analysed, studios tiered by fit, 100+ contacted, 30%+ replied, 1 partnership signed.">
@@ -779,18 +795,6 @@ def home():
             </div>
           </figure>
 
-          <figure class="board-card board-gauge" aria-labelledby="gauge-cap">
-            <figcaption id="gauge-cap" class="chart-title"><span>Reply rate</span><span class="mono muted">vs industry</span></figcaption>
-            <div class="gauge" role="img" aria-label="My outreach reply rate is over 30 percent; the industry average is 5 to 10 percent.">
-              <svg viewBox="0 0 140 140">
-                <circle class="gauge-track" cx="70" cy="70" r="58"/>
-                <circle class="gauge-ind" cx="70" cy="70" r="58" pathLength="100" stroke-dasharray="7.5 92.5"/>
-                <circle class="gauge-me" cx="70" cy="70" r="58" pathLength="100" stroke-dasharray="30 70"/>
-              </svg>
-              <div class="gauge-center"><b class="mono" data-count="30" data-suffix="%+">30%+</b><span>mine</span></div>
-            </div>
-            <p class="gauge-foot"><span class="swatch swatch-ind"></span>Industry 5–10% <span class="swatch swatch-me"></span>Me 30%+</p>
-          </figure>
 
           <dl class="board-card board-kpis">
             <div><dd class="mono" data-count="500" data-suffix="+">500+</dd><dt>Steam titles scraped &amp; analysed</dt></div>
