@@ -109,6 +109,12 @@
     }, { passive: true });
   }
 
+  /* ---------- horror theme: cursor glow ---------- */
+  const glowEl = $(".cursor-glow");
+  if (glowEl && matchMedia("(hover: hover)").matches) {
+    document.addEventListener("pointermove", (e) => { glowEl.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; }, { passive: true });
+  }
+
   /* ---------- footer year ---------- */
   $$("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
 

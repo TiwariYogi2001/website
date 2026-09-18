@@ -32,6 +32,30 @@ ICON = {
     "file": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>',
 }
 
+THEME = "horror"  # "" for the default look, "horror" for the horror variant
+
+
+def drips_svg():
+    """Blood drips under the header: a bar with drips of varying length, plus three falling drops."""
+    import random
+    rnd = random.Random(7)
+    parts = ["M0,0 H1440 V10"]
+    x = 1440
+    while x > 0:
+        w = rnd.randint(14, 26)
+        depth = rnd.choice([0, 0, 12, 22, 34, 48])
+        if depth:
+            parts.append(f"H{x} C{x - 2},{10 + depth * .6} {x - w + 2},{10 + depth * .6} {x - w},{10 + depth}")
+            parts.append(f"C{x - w - 1},{10 + depth * .6} {x - w - 1},10 {x - w - 8},10")
+            x -= w + 8
+        else:
+            x -= rnd.randint(30, 80)
+    parts.append("H0 Z")
+    drops = "".join(f'<ellipse class="drop" cx="{cx}" cy="18" rx="5" ry="9"/>' for cx in (240, 760, 1210))
+    return (f'<svg viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">'
+            f'<path d="{" ".join(parts)}"/>{drops}</svg>')
+
+
 NAV = [
     ("index", "index.html", "Home"),
     ("about", "about.html", "About"),
@@ -602,6 +626,19 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
     css_v = asset_version("assets/css/style.css")
     js_v = asset_version("assets/js/main.js")
     depth = path.count("/")
+    horror = THEME == "horror"
+    rr = "../" * depth
+    theme_head = (
+        '\n  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">'
+        f'\n  <link rel="stylesheet" href="{rr}assets/css/horror.css?v={asset_version("assets/css/horror.css")}">'
+    ) if horror else ""
+    body_cls = ' class="theme-horror"' if horror else ""
+    theme_body = (
+        '\n  <div class="fog" aria-hidden="true"><i></i><i></i></div>'
+        '\n  <div class="grain" aria-hidden="true"></div>'
+        '\n  <div class="cursor-glow" aria-hidden="true"></div>'
+    ) if horror else ""
+    drips = f'  <div class="drips" aria-hidden="true">{drips_svg()}</div>' if horror else ""
     r = "../" * depth
     full_title = f"{title} — {NAME}" if key != "index" else f"{NAME} — Gaming BD, Market Intelligence &amp; Data Analytics"
     nav = "\n".join(
@@ -609,7 +646,7 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
         for k, href, label in NAV)
     url = SITE + ("" if path == "index.html" else path)
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en"{body_cls}>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -629,9 +666,9 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{r}assets/css/style.css?v={css_v}">
+  <link rel="stylesheet" href="{r}assets/css/style.css?v={css_v}">{theme_head}
 </head>
-<body>
+<body>{theme_body}
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -648,6 +685,7 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
     </div>
   </header>
 
+{drips}
   <main id="main">
 {body}
   </main>
