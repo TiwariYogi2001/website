@@ -59,7 +59,7 @@ PROJECTS = [
         "title": "Steam market intelligence for studio outreach",
         "short": "Steam market intelligence",
         "card": "A 1,310-line Python scraper, 500+ Steam titles, and a scored lead pipeline behind a 30%+ reply rate.",
-        "role": "BD &amp; Outreach Specialist, Brothers Interactive",
+        "role": "Business Analyst, Brothers Interactive",
         "when": "Oct 2025 – present",
         "tools": ["Python", "Web scraping", "Pandas", "Excel", "Lead scoring"],
         "thumb": {"type": "img", "src": "assets/img/projects/steam.webp", "w": 1280, "h": 720, "generated": True, "hero": "funnel"},
@@ -466,11 +466,11 @@ LIMIT 1;""",
 
 EXPERIENCE = [
     {
-        "role": "BD &amp; Outreach Specialist",
+        "role": "Business Analyst",
         "org": "Brothers Interactive",
         "place": "Jaipur · on-site",
         "when": "Oct 2025 — present",
-        "summary": "Business development, market research and analysis for a game art and development studio — finding "
+        "summary": "Business analysis, market research and partner outreach for a game art and development studio — finding "
                    "the studios we should work with, and turning research into conversations that land.",
         "stats": [("30%+", "reply rate"), ("100+", "studios contacted"), ("500+", "Steam titles analysed"), ("1", "partnership signed")],
         "bullets": [
@@ -479,7 +479,7 @@ EXPERIENCE = [
             "Contacted <strong>100+ indie studios, publishers and gaming companies</strong>, running a structured pipeline "
             "from market research through qualification to partnership discussion.",
             "Scraped and analysed <strong>500+ Steam titles with a custom 1,310-line Python script</strong> — genre trends, "
-            "pricing, review trajectories, publisher activity and social presence — to target BD.",
+            "pricing, review trajectories, publisher activity and social presence — to target outreach.",
             "Closed <strong>one confirmed studio partnership</strong>, owning the full cycle from market identification to "
             "signed collaboration agreement.",
             "Gather requirements from B2B clients and internal teams, and map how the studio engages partners with workflow "
@@ -487,7 +487,7 @@ EXPERIENCE = [
             "Act as the bridge between business teams (sales, marketing, operations) and technical teams (developers, product).",
             "Maintain outreach dashboards, lead-scoring datasets and KPI reports in Excel and Power BI for pipeline health, "
             "reply rates and studio tiers.",
-            "Documented research workflows, outreach playbooks and templates so the BD process is repeatable.",
+            "Documented research workflows, outreach playbooks and templates so the process is repeatable.",
         ],
         "tags": ["Python", "SQL", "Excel", "Power BI", "Lead generation", "Market research"],
         "case": "steam-market-intelligence",
@@ -550,7 +550,7 @@ EXPERIENCE = [
 ]
 
 SKILLS = [
-    ("Business development", "How I find and win partners", [
+    ("Business analysis", "How I find and win partners", [
         ("Studio &amp; publisher outreach", True), ("Lead generation", True), ("Pipeline management", True),
         ("Email, LinkedIn &amp; Discord outreach", False), ("Stakeholder communication", False),
         ("Requirement gathering", False), ("Process mapping", False), ("Playbooks &amp; documentation", False)]),
@@ -603,7 +603,7 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
     js_v = asset_version("assets/js/main.js")
     depth = path.count("/")
     r = "../" * depth
-    full_title = f"{title} — {NAME}" if key != "index" else f"{NAME} — Gaming BD, Market Intelligence &amp; Data Analytics"
+    full_title = f"{title} — {NAME}" if key != "index" else f"{NAME} — Business Analyst · Market Intelligence &amp; Data Analytics"
     nav = "\n".join(
         f'        <a href="{r}{href}"{" aria-current=\"page\"" if k == key or (key == "case" and k == "work") else ""}>{label}</a>'
         for k, href, label in NAV)
@@ -656,7 +656,7 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
     <div class="wrap footer-grid">
       <div>
         <p class="footer-name">{NAME}</p>
-        <p class="muted">Gaming BD, market intelligence &amp; data analytics. Jaipur, India — open to remote roles worldwide.</p>
+        <p class="muted">Business analyst — gaming market intelligence &amp; data analytics. Jaipur, India — open to remote roles worldwide.</p>
       </div>
       <nav class="footer-links" aria-label="Footer">
         <a href="{r}about.html">About</a>
@@ -728,13 +728,13 @@ def project_card(p, r, big=False):
           </a>"""
 
 
-CAREER_SVG = """<svg viewBox="0 0 420 260" role="img" aria-label="Career path: B.Tech Mechanical Engineering 2018 to 2022, Unity Developer 2022, AR/VR Executive 2023 to 2025, NextLeap Data Analyst Fellowship 2025, BD and Outreach Specialist at Brothers Interactive from October 2025.">
+CAREER_SVG = """<svg viewBox="0 0 420 260" role="img" aria-label="Career path: B.Tech Mechanical Engineering 2018 to 2022, Unity Developer 2022, AR/VR Executive 2023 to 2025, NextLeap Data Analyst Fellowship 2025, Business Analyst at Brothers Interactive from October 2025.">
             <g class="grid"><line x1="40" y1="40" x2="400" y2="40"/><line x1="40" y1="95" x2="400" y2="95"/><line x1="40" y1="150" x2="400" y2="150"/><line x1="40" y1="205" x2="400" y2="205"/></g>
             <g class="axis mono"><text x="40" y="238">2018</text><text x="160" y="238">2022</text><text x="250" y="238">2023</text><text x="325" y="238">2025</text><text x="400" y="238" text-anchor="end">now</text></g>
             <path class="area" d="M40,205 L160,205 L160,160 L250,160 L250,118 L325,118 L325,82 L360,82 L360,48 L400,48 L400,220 L40,220 Z"/>
             <path class="line" d="M40,205 L160,205 L160,160 L250,160 L250,118 L325,118 L325,82 L360,82 L360,48 L400,48"/>
             <g class="points"><circle cx="100" cy="205" r="4"/><circle cx="205" cy="160" r="4"/><circle cx="287" cy="118" r="4"/><circle cx="342" cy="82" r="4"/><circle class="now" cx="380" cy="48" r="6"/></g>
-            <g class="labels"><text x="100" y="193" text-anchor="middle">B.Tech, Mech. Eng.</text><text x="205" y="148" text-anchor="middle">Unity Dev</text><text x="287" y="106" text-anchor="middle">AR/VR Exec</text><text x="332" y="70" text-anchor="end">Data Fellow</text><text class="strong" x="392" y="30" text-anchor="end">Gaming BD + Data</text></g>
+            <g class="labels"><text x="100" y="193" text-anchor="middle">B.Tech, Mech. Eng.</text><text x="205" y="148" text-anchor="middle">Unity Dev</text><text x="287" y="106" text-anchor="middle">AR/VR Exec</text><text x="332" y="70" text-anchor="end">Data Fellow</text><text class="strong" x="392" y="30" text-anchor="end">Business Analyst</text></g>
           </svg>"""
 
 
@@ -752,7 +752,7 @@ def home():
       <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
-        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Open to remote Gaming BD, market research &amp; analyst roles</p>
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Open to remote Business Analyst, market research &amp; gaming roles</p>
         <h1 class="display">I help game studios find the right partners — <em>with data.</em></h1>
         <div class="hero-row">
           <p class="lede">
@@ -815,7 +815,7 @@ def home():
 
     <section class="section section-alt">
       <div class="wrap">
-{section_head("What I do", "Four skills that rarely come in one person", "Most BD people can't write SQL. Most analysts have never shipped a game. I've done all of it — and kept the projects on track while doing it.")}
+{section_head("What I do", "Four skills that rarely come in one person", "Most analysts have never shipped a game. Most developers never sit with the business. I've done all of it — and kept the projects on track while doing it.")}
         <div class="pillars pillars-4">
           <article class="pillar">
             <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8 13v-3M11 13V8M14 13v-2"/></svg></span><span class="pillar-num mono">01</span>
@@ -825,7 +825,7 @@ def home():
           </article>
           <article class="pillar">
             <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 10 14M21 3l-7 18-4-8-8-4 18-7Z"/></svg></span><span class="pillar-num mono">02</span>
-            <h3>Business development</h3>
+            <h3>Business analysis</h3>
             <p>Research-first outreach across email, LinkedIn and Discord, a scored lead pipeline, and playbooks the team can reuse. 100+ studios contacted, one partnership signed.</p>
             <a class="link-arrow" href="experience.html">What I do at Brothers Interactive</a>
           </article>
@@ -887,7 +887,7 @@ def home():
     <section class="section">
       <div class="wrap split">
         <div>
-{section_head("Background", "Engineer → game developer → XR → data → gaming BD", "Each move added a layer: engineering taught me systems, games taught me players, XR taught me clients, data taught me proof — and BD is where they all pay off.")}
+{section_head("Background", "Engineer → game developer → XR → data → business analyst", "Each move added a layer: engineering taught me systems, games taught me players, XR taught me clients, data taught me proof — and business analysis is where they all pay off.")}
           <div class="hero-actions">
             <a class="btn btn-ghost" href="about.html">My story</a>
             <a class="btn btn-ghost" href="experience.html">Full experience</a>
@@ -901,8 +901,8 @@ def home():
     </section>
 {cta_band(r)}"""
     return page("index", "index.html", NAME,
-                "Yogesh Tiwari helps game studios find the right partners with data — Steam market intelligence, "
-                "business development and analytics in SQL, Python, Power BI and Tableau. Jaipur, India.", body)
+                "Yogesh Tiwari, Business Analyst — helps game studios find the right partners with data: Steam market intelligence, "
+                "business analysis and analytics in SQL, Python, Power BI and Tableau. Jaipur, India.", body)
 
 
 def cta_band(r):
@@ -910,7 +910,7 @@ def cta_band(r):
       <div class="wrap cta-inner">
         <div>
           <h2>Working in gaming? Let's talk.</h2>
-          <p>Open to remote Gaming BD, market research and business analyst roles — and to studios looking for partners.</p>
+          <p>Open to remote Business Analyst, market research and gaming roles — and to studios looking for partners.</p>
         </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="{r}contact.html">Get in touch</a>
@@ -924,7 +924,7 @@ def about():
     body = f"""    <section class="page-hero" id="top">
       <div class="wrap">
         <p class="kicker mono">About</p>
-        <h1>I sit where gaming, data and business development meet.</h1>
+        <h1>I sit where gaming, data and business analysis meet.</h1>
         <p class="lede">That's a rare mix, and it's the whole point. I understand what game developers need because I've been one — and I can back every outreach decision with data.</p>
       </div>
     </section>
@@ -936,7 +936,7 @@ def about():
           <p>I trained as a mechanical engineer at Rajkiya Engineering College, Mainpuri, and graduated in 2022. Curiosity about how things work pulled me toward software, and my first job was building 2D casino and card games in Unity at Mobzway Technologies. Writing gameplay logic taught me to think clearly and debug patiently.</p>
           <p>From there I moved into AR/VR at the Atal Incubation Centre, Manipal University Jaipur. For two years I led immersive projects for 5+ startup partners, ran strategy workshops with founders, and mentored junior developers. That's where I saw how much stronger a product becomes when it's tied to real business needs — and how much of that comes down to data.</p>
           <p>So I went deep on analytics. The NextLeap Data Analyst Fellowship put me through real business cases in SQL, Python, Tableau and Power BI, and I graduated as a Top Fellow in 2025.</p>
-          <p>Today, at Brothers Interactive, all of it comes together. I research the Steam market with my own Python tools, score and tier studios, and run business development with game studios and publishers worldwide. My outreach gets a 30%+ reply rate — 3–5× the industry norm — because I speak to studios as someone who has shipped games.</p>
+          <p>Today, at Brothers Interactive, all of it comes together. I research the Steam market with my own Python tools, score and tier studios, and work as the analyst behind our partnerships with game studios and publishers worldwide. My outreach gets a 30%+ reply rate — 3–5× the industry norm — because I speak to studios as someone who has shipped games.</p>
         </div>
         <figure class="career-chart sticky-head" aria-labelledby="career-cap">
           <figcaption id="career-cap" class="chart-title"><span>Career, plotted</span><span class="mono muted">2018 → today</span></figcaption>
@@ -978,7 +978,7 @@ def about():
     </section>
 {cta_band("")}"""
     return page("about", "about.html", "About",
-                "Mechanical engineer turned Unity developer, AR/VR executive, data analyst and gaming BD specialist — "
+                "Mechanical engineer turned Unity developer, AR/VR executive, data analyst and gaming business analyst — "
                 "Yogesh Tiwari's story.", body)
 
 
@@ -1011,7 +1011,7 @@ def experience():
     body = f"""    <section class="page-hero" id="top">
       <div class="wrap">
         <p class="kicker mono">Experience</p>
-        <h1>Four years across games, XR, data and business development.</h1>
+        <h1>Four years across games, XR, data and business analysis.</h1>
         <p class="lede">Every role below built on the last. The numbers are real, and each role links to a project from that time.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="{RESUME}" download>Download résumé (PDF)</a>
@@ -1040,7 +1040,7 @@ def experience():
     </section>
 {cta_band("")}"""
     return page("experience", "experience.html", "Experience",
-                "Yogesh Tiwari's experience: BD & Outreach Specialist at Brothers Interactive, NextLeap Data Analyst "
+                "Yogesh Tiwari's experience: Business Analyst at Brothers Interactive, NextLeap Data Analyst "
                 "Fellow, AR/VR Executive at AICMUJ, and Unity Developer at Mobzway.", body)
 
 
@@ -1212,7 +1212,7 @@ def skills():
     </section>
 {cta_band("")}"""
     return page("skills", "skills.html", "Skills",
-                "Yogesh Tiwari's toolkit: business development, Steam market intelligence, SQL, Python, Power BI, "
+                "Yogesh Tiwari's toolkit: business analysis, Steam market intelligence, SQL, Python, Power BI, "
                 "Tableau, Excel, Unity — plus certifications.", body)
 
 
@@ -1221,7 +1221,7 @@ def contact():
       <div class="wrap">
         <p class="kicker mono">Contact</p>
         <h1>Let's talk.</h1>
-        <p class="lede">I'm open to remote Gaming BD, market research and business analyst roles worldwide — and always happy to hear from studios and people in games.</p>
+        <p class="lede">I'm open to remote Business Analyst, market research and gaming roles worldwide — and always happy to hear from studios and people in games.</p>
       </div>
     </section>
 
@@ -1263,7 +1263,7 @@ def contact():
       </div>
     </section>"""
     return page("contact", "contact.html", "Contact",
-                "Contact Yogesh Tiwari — open to remote Gaming BD, market research and business analyst roles. LinkedIn, GitHub, WhatsApp or the form.",
+                "Contact Yogesh Tiwari — open to remote Business Analyst, market research and gaming roles. LinkedIn, GitHub, WhatsApp or the form.",
                 body)
 
 
