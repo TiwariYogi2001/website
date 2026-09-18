@@ -157,7 +157,10 @@
       const body = encodeURIComponent(`${data.message}\n\n— ${data.name} (${data.email})`);
       status.className = "form-status err";
       status.innerHTML = "";
-      status.append("Sending failed. ");
+      const why = err && err.message === "Failed to fetch"
+        ? "Sending was blocked (an ad-blocker, VPN or network filter is stopping formsubmit.co). "
+        : `Sending failed (${err && err.message ? err.message : "unknown error"}). `;
+      status.append(why);
       const a = document.createElement("a");
       a.href = `mailto:${TO}?subject=${subject}&body=${body}`;
       a.textContent = "Send it from your email app instead →";
