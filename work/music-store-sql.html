@@ -58,9 +58,14 @@
 
     <section class="section section-tight">
       <div class="wrap">
-        <button class="case-hero-img" data-full="../assets/img/projects/music.webp" aria-label="Enlarge the dashboard">
-          <img src="../assets/img/projects/music.webp" alt="Music store SQL dashboard" width="1280" height="720">
-        </button><p class="visual-note muted">Summary view built from the project's results.</p>
+        <pre class="code code-hero"><code class="sql">-- Where should we hold a promotional festival?
+-- The city whose customers spend the most.
+SELECT billing_city,
+       SUM(total) AS invoice_total
+FROM invoice
+GROUP BY billing_city
+ORDER BY invoice_total DESC
+LIMIT 1;</code></pre>
         <dl class="case-figures"><div><dd class="mono">$4,709</dd><dt>revenue analysed</dt></div><div><dd class="mono">614</dd><dt>invoices</dt></div><div><dd class="mono">59</dd><dt>customers</dt></div><div><dd class="mono">24</dd><dt>countries</dt></div></dl>
       </div>
     </section>
@@ -78,14 +83,7 @@
           <p>Employees, customers, invoices and invoice lines, tracks, albums, artists, genres, media types and playlists.</p>
           <h2 id="approach">Approach</h2>
           <ol class="steps"><li><span class="step-n mono">01</span><div><h3>Basics</h3><p>Senior-most employee, invoices by country, top invoice totals.</p></div></li><li><span class="step-n mono">02</span><div><h3>Customers</h3><p>The best city by invoice total, and the single highest-spending customer.</p></div></li><li><span class="step-n mono">03</span><div><h3>Genres</h3><p>Rock listeners, top artists by track count, and the most popular genre in each country.</p></div></li></ol>
-          <pre class="code"><code class="sql">-- Where should we hold a promotional festival?
--- The city whose customers spend the most.
-SELECT billing_city,
-       SUM(total) AS invoice_total
-FROM invoice
-GROUP BY billing_city
-ORDER BY invoice_total DESC
-LIMIT 1;</code></pre>
+          
           <h2 id="findings">What I found</h2>
           <ul class="bullets"><li><strong>Prague is the festival city</strong>: $273 in invoices, well ahead of Mountain View ($169) and London ($166).</li><li>The USA has the most invoices (131), followed by Canada (76) and Brazil (61).</li><li>The single best customer spent $144.54 — the top three together account for 8% of all revenue.</li><li><strong>Rock dominates</strong> with 2,635 tracks sold, more than four times Metal in second place.</li></ul>
           

@@ -62,7 +62,7 @@ PROJECTS = [
         "role": "BD &amp; Outreach Specialist, Brothers Interactive",
         "when": "Oct 2025 – present",
         "tools": ["Python", "Web scraping", "Pandas", "Excel", "Lead scoring"],
-        "thumb": {"type": "img", "src": "assets/img/projects/steam.webp", "w": 1280, "h": 720, "generated": True},
+        "thumb": {"type": "img", "src": "assets/img/projects/steam.webp", "w": 1280, "h": 720, "generated": True, "hero": "funnel"},
         "figures": [("30%+", "reply rate (industry 5–10%)"), ("500+", "Steam titles analysed"),
                     ("100+", "studios &amp; publishers contacted"), ("1", "signed partnership")],
         "question": "Brothers Interactive sells outsourced art and development to game studios. Cold outreach in this "
@@ -420,7 +420,7 @@ LIMIT 1;""",
         "role": "AR/VR Executive, AICMUJ Innovation Foundation",
         "when": "2023 – 2025",
         "tools": ["Unity", "C#", "VR", "Analytics"],
-        "thumb": {"type": "img", "src": "assets/img/projects/schoolvr.webp", "w": 1280, "h": 720, "generated": True},
+        "thumb": {"type": "img", "src": "assets/img/projects/schoolvr.webp", "w": 1280, "h": 720, "generated": True, "glyph": "VR"},
         "figures": [("5+", "startup partners supported"), ("3+", "developers mentored")],
         "question": "Students remember what they experience. <strong>Could VR make science, history and geography "
                     "lessons stick — and could teachers see whether it works?</strong>",
@@ -445,7 +445,7 @@ LIMIT 1;""",
         "role": "Unity Developer, Mobzway Technologies",
         "when": "2022 – 2023",
         "tools": ["Unity3D", "C#", "Socket.io", "QA"],
-        "thumb": {"type": "img", "src": "assets/img/projects/callbreak.webp", "w": 1280, "h": 720, "generated": True},
+        "thumb": {"type": "img", "src": "assets/img/projects/callbreak.webp", "w": 1280, "h": 720, "generated": True, "glyph": "♠"},
         "figures": [("4", "players per table"), ("Real-time", "networking")],
         "question": "Callbreak is a trick-taking card game popular in South Asia. <strong>Make it play smoothly online, "
                     "in real time, on mobile.</strong>",
@@ -810,8 +810,8 @@ def home():
 
     <section class="section section-alt">
       <div class="wrap">
-{section_head("What I do", "Three skills that rarely come in one person", "Most BD people can't write SQL. Most analysts have never shipped a game. I've done all three jobs, so each one makes the others better.")}
-        <div class="pillars">
+{section_head("What I do", "Four skills that rarely come in one person", "Most BD people can't write SQL. Most analysts have never shipped a game. I've done all of it — and kept the projects on track while doing it.")}
+        <div class="pillars pillars-4">
           <article class="pillar">
             <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8 13v-3M11 13V8M14 13v-2"/></svg></span><span class="pillar-num mono">01</span>
             <h3>Market intelligence</h3>
@@ -829,6 +829,12 @@ def home():
             <h3>Data analytics</h3>
             <p>SQL, Python, Power BI, Tableau and Excel — from hypothesis tests on 1.3M transactions to dashboards managers use every week.</p>
             <a class="link-arrow" href="work.html">Dashboards &amp; SQL work</a>
+          </article>
+          <article class="pillar">
+            <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M9 3v2M15 3v2M8 12l2.5 2.5L16 9"/></svg></span><span class="pillar-num mono">04</span>
+            <h3>Project management</h3>
+            <p>Coordinated AR/VR builds for 5+ startups, tracked KPIs for stakeholders, ran founder workshops and mentored junior developers — in Jira, with Agile and Scrum.</p>
+            <a class="link-arrow" href="skills.html">Skills &amp; tools</a>
           </article>
         </div>
       </div>
@@ -1069,15 +1075,13 @@ def case(i):
     prev_p = PROJECTS[i - 1]
     next_p = PROJECTS[(i + 1) % len(PROJECTS)]
     t = p["thumb"]
-    if t["type"] == "img":
-        cap = ("<p class=\"visual-note muted\">Summary view built from the project's results.</p>"
-               if t.get("generated") else "")
+    if t["type"] == "img" and not t.get("generated"):
         visual = f"""        <button class="case-hero-img" data-full="{r}{t['src']}" aria-label="Enlarge the dashboard">
           <img src="{r}{t['src']}" alt="{p['short']} dashboard" width="{t['w']}" height="{t['h']}">
-        </button>{cap}"""
+        </button>"""
     elif p.get("code"):
         visual = f"""        <pre class="code code-hero"><code class="sql">{escape(p['code'])}</code></pre>"""
-    elif t["type"] == "funnel":
+    elif t.get("hero") == "funnel":
         visual = """        <ol class="funnel funnel-wide" aria-label="Outreach funnel">
           <li style="--w:100%"><span class="mono">500+</span> Steam titles scraped &amp; analysed</li>
           <li style="--w:82%"><span class="mono">Tiered</span> studios scored by fit</li>
@@ -1086,7 +1090,7 @@ def case(i):
           <li style="--w:28%" class="is-win"><span class="mono">1</span> partnership signed</li>
         </ol>"""
     else:
-        visual = f'        <div class="glyph-hero" aria-hidden="true"><span>{t["label"]}</span></div>'
+        visual = f'        <div class="glyph-hero" aria-hidden="true"><span>{t.get("glyph", "")}</span></div>'
 
     figures = "".join(f"<div><dd class=\"mono\">{v}</dd><dt>{k}</dt></div>" for v, k in p["figures"])
     steps = "".join(
@@ -1099,7 +1103,7 @@ def case(i):
           <h2>What I'd recommend</h2>
           <ul class="bullets">{"".join(f"<li>{x}</li>" for x in p["recommend"])}</ul>"""
     code_block = ""
-    if p.get("code") and t["type"] == "img":
+    if p.get("code") and t["type"] == "img" and not t.get("generated"):
         code_block = f'<pre class="code"><code class="sql">{escape(p["code"])}</code></pre>'
     note = f'<p class="case-note muted">{p["note"]}</p>' if p.get("note") else ""
     links = "".join(

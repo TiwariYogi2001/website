@@ -58,9 +58,22 @@
 
     <section class="section section-tight">
       <div class="wrap">
-        <button class="case-hero-img" data-full="../assets/img/projects/pizza.webp" aria-label="Enlarge the dashboard">
-          <img src="../assets/img/projects/pizza.webp" alt="Pizza sales SQL dashboard" width="1280" height="720">
-        </button><p class="visual-note muted">Summary view built from the project's results.</p>
+        <pre class="code code-hero"><code class="sql">-- Top 3 pizzas by revenue in each category
+SELECT name, revenue
+FROM (
+  SELECT category, name, revenue,
+         RANK() OVER (PARTITION BY category
+                      ORDER BY revenue DESC) AS rn
+  FROM (
+    SELECT pt.category, pt.name,
+           SUM(od.quantity * p.price) AS revenue
+    FROM pizza_types pt
+    JOIN pizzas p ON pt.pizza_type_id = p.pizza_type_id
+    JOIN order_details od ON od.pizza_id = p.pizza_id
+    GROUP BY pt.category, pt.name
+  ) AS by_pizza
+) AS ranked
+WHERE rn &lt;= 3;</code></pre>
         <dl class="case-figures"><div><dd class="mono">$817.9K</dd><dt>revenue in 2015</dt></div><div><dd class="mono">21,350</dd><dt>orders</dt></div><div><dd class="mono">49,574</dd><dt>pizzas sold</dt></div><div><dd class="mono">12–1 PM</dd><dt>busiest hour</dt></div></dl>
       </div>
     </section>
@@ -78,22 +91,7 @@
           <p>Four related CSVs: orders (timestamps), order details (pizza and quantity), pizzas (size and price) and pizza types (name, category, ingredients).</p>
           <h2 id="approach">Approach</h2>
           <ol class="steps"><li><span class="step-n mono">01</span><div><h3>Basic</h3><p>Total orders and revenue, highest-priced pizza, most common size, top 5 pizzas by quantity.</p></div></li><li><span class="step-n mono">02</span><div><h3>Intermediate</h3><p>Quantity by category, orders by hour, daily average pizzas, top 3 by revenue.</p></div></li><li><span class="step-n mono">03</span><div><h3>Advanced</h3><p>Revenue share by category, cumulative revenue over time, and the top 3 pizzas per category with <code>RANK() OVER (PARTITION BY …)</code>.</p></div></li></ol>
-          <pre class="code"><code class="sql">-- Top 3 pizzas by revenue in each category
-SELECT name, revenue
-FROM (
-  SELECT category, name, revenue,
-         RANK() OVER (PARTITION BY category
-                      ORDER BY revenue DESC) AS rn
-  FROM (
-    SELECT pt.category, pt.name,
-           SUM(od.quantity * p.price) AS revenue
-    FROM pizza_types pt
-    JOIN pizzas p ON pt.pizza_type_id = p.pizza_type_id
-    JOIN order_details od ON od.pizza_id = p.pizza_id
-    GROUP BY pt.category, pt.name
-  ) AS by_pizza
-) AS ranked
-WHERE rn &lt;= 3;</code></pre>
+          
           <h2 id="findings">What I found</h2>
           <ul class="bullets"><li>A full year (2015) of trading: <strong>21,350 orders, 49,574 pizzas and $817.9K revenue</strong> — about 138 pizzas a day.</li><li>Orders peak at <strong>lunch, 12–1 PM</strong>, with a second rush from 5–7 PM — the two staffing windows that matter.</li><li>Large is the most-ordered size; XL and XXL together are only about 1% of order lines.</li><li>The Classic Deluxe sells the most units (2,453), but the <strong>Thai Chicken earns the most revenue</strong> ($43.4K) — volume and value aren't the same list.</li><li>Revenue is spread evenly: Classic leads at 26.9%, and the other three categories sit between 23.7% and 25.5%.</li><li>The Brie Carre is the weakest earner at $11.6K — a candidate for a menu review.</li></ul>
           <h2>What I'd recommend</h2>
