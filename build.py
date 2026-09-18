@@ -20,7 +20,7 @@ NAME = "Yogesh Tiwari"
 EMAIL = "yogeshtiwari8974@gmail.com"
 LINKEDIN = "https://www.linkedin.com/in/yogesh-tiwari2000"
 GITHUB = "https://github.com/TiwariYogi2001"
-WHATSAPP = "https://wa.me/qr/6AC4PS544CA7A1"
+WHATSAPP = "https://wa.me/918938934294?text=Hi%20Yogesh%2C%20I%20found%20you%20through%20your%20portfolio."
 RESUME = "assets/Yogesh_Tiwari_Resume.pdf"
 GH = "https://github.com/TiwariYogi2001/"
 
