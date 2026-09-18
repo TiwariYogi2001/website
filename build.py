@@ -12,6 +12,7 @@ and behaviour in assets/js/main.js.
 
 from pathlib import Path
 from html import escape
+import hashlib
 
 ROOT = Path(__file__).parent
 SITE = "https://tiwariyogi2001.github.io/website/"
@@ -580,7 +581,15 @@ PAPER = ("Comparative Study of the Compressive Strength of Different Composites"
 #  SHARED LAYOUT
 # =====================================================================
 
+def asset_version(rel):
+    """Short content hash so browsers fetch fresh CSS/JS after every deploy."""
+    f = ROOT / rel
+    return hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else "0"
+
+
 def page(key, path, title, desc, body, og_image="assets/img/og.png"):
+    css_v = asset_version("assets/css/style.css")
+    js_v = asset_version("assets/js/main.js")
     depth = path.count("/")
     r = "../" * depth
     full_title = f"{title} — {NAME}" if key != "index" else f"{NAME} — Gaming BD, Market Intelligence &amp; Data Analytics"
@@ -609,7 +618,7 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{r}assets/css/style.css">
+  <link rel="stylesheet" href="{r}assets/css/style.css?v={css_v}">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -662,7 +671,7 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
     <button class="lightbox-close" aria-label="Close preview">×</button>
     <img alt="">
   </dialog>
-  <script src="{r}assets/js/main.js"></script>
+  <script src="{r}assets/js/main.js?v={js_v}"></script>
 </body>
 </html>
 """
