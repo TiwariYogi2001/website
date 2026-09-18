@@ -151,8 +151,18 @@
       form.reset();
       $$("[aria-invalid]", form).forEach((f) => f.removeAttribute("aria-invalid"));
       say("Thanks — your message is on its way. I'll reply soon.", "ok");
-    } catch {
-      say("Something went wrong sending that. Please try again, or email me directly.", "err");
+    } catch (err) {
+      // EmailJS is down or misconfigured — hand the visitor a pre-filled mailto so nothing is lost.
+      const subject = encodeURIComponent($("#subject").value);
+      const body = encodeURIComponent(`${$("#message").value}\n\n— ${$("#name").value} (${$("#email").value})`);
+      status.className = "form-status err";
+      status.innerHTML = "";
+      status.append("Sending failed. ");
+      const a = document.createElement("a");
+      a.href = `mailto:yogeshtiwari8974@gmail.com?subject=${subject}&body=${body}`;
+      a.textContent = "Send it from your email app instead →";
+      status.append(a);
+      console.warn("EmailJS error:", err && err.text ? err.text : err);
     } finally {
       submit.disabled = false;
       submit.textContent = "Send message";
