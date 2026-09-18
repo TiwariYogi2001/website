@@ -563,9 +563,12 @@ SKILLS = [
         ("Power Query", False), ("DAX", False), ("Hypothesis testing", False), ("RFM segmentation", False)]),
     ("SQL depth", "What my queries look like", [
         ("JOINs", False), ("CTEs", False), ("Window functions", True), ("Subqueries", False), ("Aggregations", False)]),
+    ("Project management", "How I keep delivery on track", [
+        ("Project coordination", True), ("Agile &amp; Scrum", False), ("Jira", False), ("KPI tracking &amp; reporting", True),
+        ("Process documentation", False), ("Cross-team alignment", False), ("Mentoring", False)]),
     ("Gaming &amp; tech", "Why studios trust my read", [
         ("Unity3D", True), ("C#", False), ("AR/VR workflow", True), ("Socket.io", False), ("QA &amp; debugging", False),
-        ("GitHub", False), ("Jira", False), ("Agile &amp; Scrum", False), ("Blender", False)]),
+        ("GitHub", False), ("Blender", False)]),
 ]
 
 CERTS = [
