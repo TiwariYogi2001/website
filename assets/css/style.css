@@ -70,11 +70,10 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+body { position: relative; }
 body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    radial-gradient(55% 45% at 85% -5%, var(--glow), transparent 65%),
-    radial-gradient(35% 35% at -5% 100%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 65%);
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 120vh; z-index: -1; pointer-events: none;
+  background: radial-gradient(55% 45% at 85% -5%, var(--glow), transparent 65%);
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
