@@ -728,27 +728,27 @@ def home():
         "pizza-sales-sql", "airbnb-sql-analysis", "schoolvr")]
     steam = PROJECTS[0]
     body = f"""    <section class="hero" id="top">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Open to remote Gaming BD, market research &amp; analyst roles</p>
-          <h1>I help game studios find the right partners — <em>with data.</em></h1>
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Open to remote Gaming BD, market research &amp; analyst roles</p>
+        <h1 class="display">I help game studios find the right partners — <em>with data.</em></h1>
+        <div class="hero-row">
           <p class="lede">
             I'm Yogesh. I built games in Unity and ran AR/VR projects before moving into analytics. Now I do business
             development and market intelligence at Brothers Interactive — scraping Steam, scoring studios in Python and
             SQL, and writing outreach people actually answer.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="work.html">See my work</a>
-            <a class="btn btn-ghost" href="{RESUME}" download>Download résumé</a>
+            <a class="btn btn-primary btn-lg" href="work.html">See my work</a>
+            <a class="btn btn-ghost btn-lg" href="{RESUME}" download>Download résumé</a>
           </div>
         </div>
+      </div>
 
-        <div class="hero-visual">
-          <figure class="viz-panel" aria-labelledby="reply-cap">
-            <figcaption id="reply-cap" class="chart-title">
-              <span>Outreach pipeline</span>
-              <span class="mono muted">Brothers Interactive · Oct 2025 → now</span>
-            </figcaption>
+      <div class="wrap">
+        <div class="board">
+          <figure class="board-card board-funnel" aria-labelledby="funnel-cap">
+            <figcaption id="funnel-cap" class="chart-title"><span>Outreach funnel</span><span class="mono muted">Brothers Interactive · Oct 2025 → now</span></figcaption>
             <div class="viz-bars" role="img" aria-label="Funnel: 500+ Steam titles analysed, studios tiered by fit, 100+ contacted, 30%+ replied, 1 partnership signed.">
               <div class="viz-bar" style="--h:100%"><b class="mono">500+</b><i></i><span>titles</span></div>
               <div class="viz-bar" style="--h:80%"><b class="mono">Tier</b><i></i><span>scored</span></div>
@@ -756,32 +756,28 @@ def home():
               <div class="viz-bar" style="--h:44%"><b class="mono">30%+</b><i></i><span>replied</span></div>
               <div class="viz-bar is-win" style="--h:26%"><b class="mono">1</b><i></i><span>signed</span></div>
             </div>
-            <div class="compare" role="img" aria-label="My outreach reply rate is over 30 percent, compared with an industry average of 5 to 10 percent.">
-              <div class="compare-row">
-                <span class="compare-label">Industry avg.</span>
-                <span class="compare-track"><span class="compare-bar compare-range" style="--from:12.5%;--to:25%"></span></span>
-                <span class="compare-val mono">5–10%</span>
-              </div>
-              <div class="compare-row is-me">
-                <span class="compare-label">My outreach</span>
-                <span class="compare-track"><span class="compare-bar" style="--to:75%"></span></span>
-                <span class="compare-val mono">30%+</span>
-              </div>
-            </div>
           </figure>
-          <div class="viz-chip chip-a"><span class="mono">3–5×</span> industry reply rate</div>
-          <div class="viz-chip chip-b"><span class="mono">1,310</span> lines of Python</div>
-          <div class="viz-chip chip-c"><span class="dot" aria-hidden="true"></span> Top Fellow · NextLeap</div>
-        </div>
-      </div>
 
-      <div class="wrap">
-        <dl class="kpis">
-          <div><dd class="mono">500+</dd><dt>Steam titles scraped &amp; analysed</dt></div>
-          <div><dd class="mono">100+</dd><dt>Studios &amp; publishers contacted</dt></div>
-          <div><dd class="mono">30%+</dd><dt>Reply rate, vs 5–10% industry</dt></div>
-          <div><dd class="mono">4+</dd><dt>Years across games, XR &amp; data</dt></div>
-        </dl>
+          <figure class="board-card board-gauge" aria-labelledby="gauge-cap">
+            <figcaption id="gauge-cap" class="chart-title"><span>Reply rate</span><span class="mono muted">vs industry</span></figcaption>
+            <div class="gauge" role="img" aria-label="My outreach reply rate is over 30 percent; the industry average is 5 to 10 percent.">
+              <svg viewBox="0 0 140 140">
+                <circle class="gauge-track" cx="70" cy="70" r="58"/>
+                <circle class="gauge-ind" cx="70" cy="70" r="58" pathLength="100" stroke-dasharray="7.5 92.5"/>
+                <circle class="gauge-me" cx="70" cy="70" r="58" pathLength="100" stroke-dasharray="30 70"/>
+              </svg>
+              <div class="gauge-center"><b class="mono" data-count="30" data-suffix="%+">30%+</b><span>mine</span></div>
+            </div>
+            <p class="gauge-foot"><span class="swatch swatch-ind"></span>Industry 5–10% <span class="swatch swatch-me"></span>Me 30%+</p>
+          </figure>
+
+          <dl class="board-card board-kpis">
+            <div><dd class="mono" data-count="500" data-suffix="+">500+</dd><dt>Steam titles scraped &amp; analysed</dt></div>
+            <div><dd class="mono" data-count="100" data-suffix="+">100+</dd><dt>Studios &amp; publishers contacted</dt></div>
+            <div><dd class="mono" data-count="1310" data-suffix="">1,310</dd><dt>Lines of Python in my Steam scraper</dt></div>
+            <div><dd class="mono">Top Fellow</dd><dt>NextLeap Data Analyst Fellowship, 2025</dt></div>
+          </dl>
+        </div>
       </div>
     </section>
 

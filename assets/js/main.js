@@ -78,6 +78,37 @@
   $(".lightbox-close", box).addEventListener("click", () => box.close());
   box.addEventListener("click", (e) => { if (e.target === box) box.close(); });
 
+  /* ---------- count-up numbers ---------- */
+  const counters = $$("[data-count]");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const runCount = (el) => {
+    const target = Number(el.dataset.count), suffix = el.dataset.suffix || "", t0 = performance.now(), dur = 1400;
+    const fmt = (n) => n.toLocaleString("en-US");
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(target * eased)) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if (counters.length && !reduced && "IntersectionObserver" in window) {
+    const co = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { runCount(e.target); co.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    counters.forEach((el) => co.observe(el));
+  }
+
+  /* ---------- cursor spotlight ---------- */
+  if (matchMedia("(hover: hover)").matches) {
+    document.addEventListener("pointermove", (e) => {
+      const el = e.target.closest(".card, .pillar, .board-card");
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      el.style.setProperty("--my", `${e.clientY - r.top}px`);
+    }, { passive: true });
+  }
+
   /* ---------- footer year ---------- */
   $$("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
 
