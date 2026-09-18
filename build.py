@@ -24,6 +24,14 @@ WHATSAPP = "https://wa.me/qr/6AC4PS544CA7A1"
 RESUME = "assets/Yogesh_Tiwari_Resume.pdf"
 GH = "https://github.com/TiwariYogi2001/"
 
+ICON = {
+    "linkedin": '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>',
+    "github": '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>',
+    "whatsapp": '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm0-21.6A11.8 11.8 0 0 0 1.9 17.9L.2 24l6.3-1.6A11.8 11.8 0 1 0 12 .2z"/></svg>',
+    "pin": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+    "file": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>',
+}
+
 NAV = [
     ("index", "index.html", "Home"),
     ("about", "about.html", "About"),
@@ -654,11 +662,11 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
         <a href="{r}skills.html">Skills</a>
         <a href="{r}contact.html">Contact</a>
       </nav>
-      <nav class="footer-links" aria-label="Elsewhere">
-        <a href="mailto:{EMAIL}">Email</a>
-        <a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="{GITHUB}" target="_blank" rel="noopener">GitHub</a>
-        <a href="{r}{RESUME}" download>Résumé (PDF)</a>
+      <nav class="footer-links footer-social" aria-label="Elsewhere">
+        <a href="{LINKEDIN}" target="_blank" rel="noopener"><span class="ci">{ICON['linkedin']}</span>LinkedIn</a>
+        <a href="{GITHUB}" target="_blank" rel="noopener"><span class="ci">{ICON['github']}</span>GitHub</a>
+        <a href="{WHATSAPP}" target="_blank" rel="noopener"><span class="ci">{ICON['whatsapp']}</span>WhatsApp</a>
+        <a href="{r}{RESUME}" download><span class="ci">{ICON['file']}</span>Résumé (PDF)</a>
       </nav>
     </div>
     <div class="wrap footer-base">
@@ -892,7 +900,7 @@ def cta_band(r):
         </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="{r}contact.html">Get in touch</a>
-          <a class="btn btn-ghost-inv" href="mailto:{EMAIL}">{EMAIL}</a>
+          <a class="btn btn-ghost-inv" href="{LINKEDIN}" target="_blank" rel="noopener">Connect on LinkedIn</a>
         </div>
       </div>
     </section>"""
@@ -1208,13 +1216,12 @@ def contact():
         <div class="contact-direct">
           <h2>Reach me directly</h2>
           <ul class="contact-list">
-            <li><span class="mono muted">Email</span><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-            <li><span class="mono muted">LinkedIn</span><a href="{LINKEDIN}" target="_blank" rel="noopener">in/yogesh-tiwari2000</a></li>
-            <li><span class="mono muted">GitHub</span><a href="{GITHUB}" target="_blank" rel="noopener">TiwariYogi2001</a></li>
-            <li><span class="mono muted">WhatsApp</span><a href="{WHATSAPP}" target="_blank" rel="noopener">Message me</a></li>
-            <li><span class="mono muted">Based in</span><span>Jaipur, India · IST (UTC+5:30)</span></li>
+            <li><a href="{LINKEDIN}" target="_blank" rel="noopener"><span class="ci ci-linkedin">{ICON['linkedin']}</span><span><strong>LinkedIn</strong><span class="muted">in/yogesh-tiwari2000 — fastest way to reach me</span></span></a></li>
+            <li><a href="{GITHUB}" target="_blank" rel="noopener"><span class="ci ci-github">{ICON['github']}</span><span><strong>GitHub</strong><span class="muted">TiwariYogi2001 — code, queries and notebooks</span></span></a></li>
+            <li><a href="{WHATSAPP}" target="_blank" rel="noopener"><span class="ci ci-whatsapp">{ICON['whatsapp']}</span><span><strong>WhatsApp</strong><span class="muted">Message me directly</span></span></a></li>
+            <li><a href="{RESUME}" download><span class="ci ci-file">{ICON['file']}</span><span><strong>Résumé</strong><span class="muted">Download as PDF</span></span></a></li>
+            <li><span class="ci-row"><span class="ci ci-pin">{ICON['pin']}</span><span><strong>Jaipur, India</strong><span class="muted">IST (UTC+5:30) · open to remote roles worldwide</span></span></span></li>
           </ul>
-          <a class="btn btn-ghost" href="{RESUME}" download>Download résumé (PDF)</a>
         </div>
 
         <form class="contact-form" id="contact-form" novalidate>
@@ -1242,7 +1249,7 @@ def contact():
       </div>
     </section>"""
     return page("contact", "contact.html", "Contact",
-                f"Contact Yogesh Tiwari — open to remote Gaming BD, market research and business analyst roles. {EMAIL}",
+                "Contact Yogesh Tiwari — open to remote Gaming BD, market research and business analyst roles. LinkedIn, GitHub, WhatsApp or the form.",
                 body)
 
 

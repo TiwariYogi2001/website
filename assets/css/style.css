@@ -507,11 +507,24 @@ button.cert:hover, a.cert:hover { transform: translateY(-3px); box-shadow: var(-
 /* ---------- contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
 .contact-direct h2, .contact-form h2 { font-size: 26px; }
-.contact-list { display: grid; margin: 20px 0 28px; border-top: 1px solid var(--line); }
-.contact-list li { display: grid; grid-template-columns: 100px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
-.contact-list .mono { font-size: 13px; padding-top: 2px; }
-.contact-list a { font-weight: 500; text-decoration: none; }
-.contact-list a:hover { color: var(--accent); }
+.contact-list { display: grid; gap: 10px; margin: 20px 0 28px; }
+.contact-list a, .contact-list .ci-row {
+  display: grid; grid-template-columns: 48px 1fr; align-items: center; gap: 16px; padding: 14px 16px;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--surface); text-decoration: none;
+  transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.contact-list a:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: var(--shadow); }
+.contact-list strong { display: block; font-weight: 600; }
+.contact-list .muted { display: block; font-size: 14px; }
+.ci { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); flex: none; }
+.ci svg { width: 22px; height: 22px; }
+.ci-linkedin { background: rgba(10, 102, 194, .14); color: #3b8de0; }
+.ci-github { background: color-mix(in srgb, var(--ink) 10%, transparent); color: var(--ink); }
+.ci-whatsapp { background: rgba(37, 211, 102, .14); color: #25d366; }
+.footer-social a { display: inline-flex; align-items: center; gap: 10px; }
+.footer-social .ci { width: 28px; height: 28px; border-radius: 8px; background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink-2); }
+.footer-social .ci svg { width: 15px; height: 15px; }
+.footer-social a:hover .ci { background: var(--accent-soft); color: var(--accent); }
 .contact-form {
   display: grid; gap: 16px; background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); padding: clamp(20px, 3vw, 32px); box-shadow: var(--shadow);
@@ -641,5 +654,4 @@ button.cert:hover, a.cert:hover { transform: translateY(-3px); box-shadow: var(-
   .funnel li { width: 100%; min-width: 0; }
   .funnel li:nth-child(2) { width: 94%; } .funnel li:nth-child(3) { width: 88%; }
   .funnel li:nth-child(4) { width: 82%; } .funnel li:nth-child(5) { width: 76%; }
-  .contact-list li { grid-template-columns: 1fr; gap: 2px; }
 }
