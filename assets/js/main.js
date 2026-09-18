@@ -18,31 +18,32 @@
     menuBtn.textContent = open ? "Close" : "Menu";
   };
   menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
-  $$("a", nav).forEach((a) => a.addEventListener("click", () => setMenu(false)));
-
-  /* ---------- active nav link ---------- */
-  const links = new Map($$(".site-nav a[href^='#']").map((a) => [a.getAttribute("href").slice(1), a]));
-  if ("IntersectionObserver" in window) {
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        links.forEach((a) => a.classList.remove("active"));
-        links.get(e.target.id)?.classList.add("active");
-      });
-    }, { rootMargin: "-45% 0px -50% 0px" });
-    links.forEach((_, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
-  }
 
   /* ---------- reveal on scroll ---------- */
-  const revealEls = $$(".case, .sql-card, .build, .timeline li, .skill-group, .cert");
+  const revealEls = $$(".card, .pillar, .exp, .skill-group, .cert, .steps li, .funnel li");
   if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     revealEls.forEach((el) => el.classList.add("reveal"));
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
       });
-    }, { rootMargin: "0px 0px -8% 0px" });
+    }, { rootMargin: "0px 0px -6% 0px" });
     revealEls.forEach((el) => io.observe(el));
+  }
+
+  /* ---------- project filters (work.html) ---------- */
+  const grid = $("#project-grid");
+  if (grid) {
+    const cards = $$(".card", grid);
+    const buttons = $$(".filter");
+    const apply = (key) => {
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === key)));
+      cards.forEach((c) => { c.hidden = key !== "all" && c.dataset.cat !== key; });
+      if (history.replaceState) history.replaceState(null, "", key === "all" ? location.pathname : `#${key}`);
+    };
+    buttons.forEach((b) => b.addEventListener("click", () => apply(b.dataset.filter)));
+    const initial = location.hash.slice(1);
+    if (buttons.some((b) => b.dataset.filter === initial)) apply(initial);
   }
 
   /* ---------- SQL syntax highlighting ---------- */
@@ -78,11 +79,12 @@
   box.addEventListener("click", (e) => { if (e.target === box) box.close(); });
 
   /* ---------- footer year ---------- */
-  $("#year").textContent = new Date().getFullYear();
+  $$("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
 
   /* ---------- contact form (EmailJS) ---------- */
-  const EMAILJS = { publicKey: "gQ0EXxX2i41Id_lLn", service: "service_e3z3alb", template: "template_wiu8pvb" };
   const form = $("#contact-form");
+  if (!form) return;
+  const EMAILJS = { publicKey: "gQ0EXxX2i41Id_lLn", service: "service_e3z3alb", template: "template_wiu8pvb" };
   const status = $("#form-status");
   const submit = $("button[type=submit]", form);
   const say = (msg, kind) => { status.textContent = msg; status.className = `form-status ${kind || ""}`; };
@@ -104,7 +106,7 @@
       return;
     }
     if (!window.emailjs) {
-      say("The form couldn't load. Please reach me on LinkedIn instead.", "err");
+      say("The form couldn't load. Please email me directly instead.", "err");
       return;
     }
 
@@ -119,7 +121,7 @@
       $$("[aria-invalid]", form).forEach((f) => f.removeAttribute("aria-invalid"));
       say("Thanks — your message is on its way. I'll reply soon.", "ok");
     } catch {
-      say("Something went wrong sending that. Please try again, or message me on LinkedIn.", "err");
+      say("Something went wrong sending that. Please try again, or email me directly.", "err");
     } finally {
       submit.disabled = false;
       submit.textContent = "Send message";
