@@ -112,20 +112,18 @@
   /* ---------- footer year ---------- */
   $$("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
 
-  /* ---------- contact form (EmailJS) ---------- */
+  /* ---------- contact form (FormSubmit) ---------- */
   const form = $("#contact-form");
   if (!form) return;
-  const EMAILJS = { publicKey: "gQ0EXxX2i41Id_lLn", service: "service_e3z3alb", template: "template_wiu8pvb" };
+  const TO = "yogeshtiwari8974@gmail.com";
   const status = $("#form-status");
   const submit = $("button[type=submit]", form);
   const say = (msg, kind) => { status.textContent = msg; status.className = `form-status ${kind || ""}`; };
 
-  if (window.emailjs) emailjs.init({ publicKey: EMAILJS.publicKey });
-
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     let firstBad = null;
-    $$("input, textarea", form).forEach((f) => {
+    $$("input:not(#honey), textarea", form).forEach((f) => {
       f.value = f.value.trim();
       const bad = !f.checkValidity();
       f.setAttribute("aria-invalid", String(bad));
@@ -136,33 +134,35 @@
       firstBad.focus();
       return;
     }
-    if (!window.emailjs) {
-      say("The form couldn't load. Please email me directly instead.", "err");
-      return;
-    }
+    const data = {
+      name: $("#name").value, email: $("#email").value, subject: $("#subject").value, message: $("#message").value,
+      _subject: `Portfolio enquiry: ${$("#subject").value}`, _template: "table", _captcha: "false", _honey: $("#honey").value,
+    };
 
     submit.disabled = true;
     submit.textContent = "Sending…";
     say("");
     try {
-      await emailjs.send(EMAILJS.service, EMAILJS.template, {
-        name: $("#name").value, email: $("#email").value, subject: $("#subject").value, message: $("#message").value,
+      const res = await fetch(`https://formsubmit.co/ajax/${TO}`, {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data),
       });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || String(out.success) !== "true") throw new Error(out.message || `HTTP ${res.status}`);
       form.reset();
       $$("[aria-invalid]", form).forEach((f) => f.removeAttribute("aria-invalid"));
       say("Thanks — your message is on its way. I'll reply soon.", "ok");
     } catch (err) {
-      // EmailJS is down or misconfigured — hand the visitor a pre-filled mailto so nothing is lost.
-      const subject = encodeURIComponent($("#subject").value);
-      const body = encodeURIComponent(`${$("#message").value}\n\n— ${$("#name").value} (${$("#email").value})`);
+      // Service down or blocked — hand the visitor a pre-filled mailto so nothing is lost.
+      const subject = encodeURIComponent(data.subject);
+      const body = encodeURIComponent(`${data.message}\n\n— ${data.name} (${data.email})`);
       status.className = "form-status err";
       status.innerHTML = "";
       status.append("Sending failed. ");
       const a = document.createElement("a");
-      a.href = `mailto:yogeshtiwari8974@gmail.com?subject=${subject}&body=${body}`;
+      a.href = `mailto:${TO}?subject=${subject}&body=${body}`;
       a.textContent = "Send it from your email app instead →";
       status.append(a);
-      console.warn("EmailJS error:", err && err.text ? err.text : err);
+      console.warn("Form error:", err);
     } finally {
       submit.disabled = false;
       submit.textContent = "Send message";

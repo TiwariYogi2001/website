@@ -662,7 +662,7 @@ def page(key, path, title, desc, body, og_image="assets/img/og.png"):
     <button class="lightbox-close" aria-label="Close preview">×</button>
     <img alt="">
   </dialog>
-{'  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>' + chr(10) if key == "contact" else ""}  <script src="{r}assets/js/main.js"></script>
+  <script src="{r}assets/js/main.js"></script>
 </body>
 </html>
 """
@@ -1210,6 +1210,7 @@ def contact():
 
         <form class="contact-form" id="contact-form" novalidate>
           <h2>Or send a message</h2>
+          <input type="text" name="_honey" id="honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
           <div class="field">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" autocomplete="name" required>
