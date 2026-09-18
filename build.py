@@ -102,7 +102,7 @@ PROJECTS = [
         "role": "NextLeap fellowship graduation project",
         "when": "2025",
         "tools": ["Python", "Pandas", "Seaborn", "SciPy", "Tableau"],
-        "thumb": {"type": "img", "src": "assets/img/projects/visa.webp", "w": 1599, "h": 899},
+        "thumb": {"type": "img", "src": "assets/img/projects/visa.webp", "cover": "assets/img/projects/visa-cover.webp", "w": 1599, "h": 899},
         "figures": [("$91.22M", "total spend analysed"), ("1.30M", "transactions"), ("1.00%", "fraud rate"),
                     ("$92.8K", "average CLV")],
         "question": "Growing the value of existing cardholders is cheaper than acquiring new ones. <strong>Which customers "
@@ -144,7 +144,7 @@ PROJECTS = [
         "role": "Case study",
         "when": "2025",
         "tools": ["Excel", "Power Query", "Pivot tables", "EDA", "Metric trees"],
-        "thumb": {"type": "img", "src": "assets/img/projects/flipkart.webp", "w": 1280, "h": 537},
+        "thumb": {"type": "img", "src": "assets/img/projects/flipkart.webp", "cover": "assets/img/projects/flipkart-cover.webp", "w": 1280, "h": 537},
         "figures": [("29,997", "customers analysed"), ("4", "support channels"), ("3", "SLA bands")],
         "question": "Flipkart wants to keep customers after they contact support. <strong>Which parts of the support "
                     "experience actually move satisfaction and retention?</strong>",
@@ -181,7 +181,7 @@ PROJECTS = [
         "role": "Dashboard project",
         "when": "2025",
         "tools": ["Power BI", "Excel", "Data modelling", "Slicers"],
-        "thumb": {"type": "img", "src": "assets/img/projects/madhav.webp", "w": 1280, "h": 722},
+        "thumb": {"type": "img", "src": "assets/img/projects/madhav.webp", "cover": "assets/img/projects/madhav-cover.webp", "w": 1280, "h": 722},
         "figures": [("₹438K", "sales"), ("₹37K", "profit"), ("5,615", "units sold"), ("43.7%", "orders paid by COD")],
         "question": "An online retailer has healthy revenue but thin profit. <strong>Where is the money made, where is "
                     "it lost, and who are the best customers?</strong>",
@@ -215,7 +215,7 @@ PROJECTS = [
         "role": "Dashboard project",
         "when": "2025",
         "tools": ["Power BI", "DAX", "Power Query"],
-        "thumb": {"type": "img", "src": "assets/img/projects/expense.webp", "w": 1280, "h": 714},
+        "thumb": {"type": "img", "src": "assets/img/projects/expense.webp", "cover": "assets/img/projects/expense-cover.webp", "w": 1280, "h": 714},
         "figures": [("₹1.57M", "income"), ("₹0.72M", "spending"), ("₹0.85M", "net saving"), ("19", "sub-categories")],
         "question": "<strong>Where does the money go each month, and when does spending overtake income?</strong> "
                     "A personal budget is a small dataset with the same questions a CFO asks.",
@@ -704,7 +704,8 @@ def chips(items, hi=()):
 def thumb(p, r):
     t = p["thumb"]
     if t["type"] == "img":
-        return (f'<img src="{r}{t["src"]}" alt="" width="{t["w"]}" height="{t["h"]}" loading="lazy">')
+        src = t.get("cover", t["src"])
+        return (f'<img src="{r}{src}" alt="" width="1280" height="720" loading="lazy">')
     if t["type"] == "code":
         lines = "".join(f"<span>{escape(l)}</span>" for l in t["lines"])
         return f'<div class="thumb-code mono" aria-hidden="true">{lines}</div>'
